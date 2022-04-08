@@ -1,2 +1,3 @@
 # Chess AI
- A chess playing Artificell Intellignece using machine learning and reinforcement modeling.
+A chess playing Artificial Intelligence.
+Using various machine learning models and digging down the rabbit hole of Chess AIs.
