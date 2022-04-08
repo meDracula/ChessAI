@@ -1,6 +1,6 @@
 # Standup 1
-**Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh
-**Datum**: 2022-04-08
+**Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh<br>
+**Datum**: 2022-04-08<br>
 
 * Bestämelse:
 	- Projekts ide: **Chess AI**
@@ -17,6 +17,6 @@ CI och Deplyoment automation kommer vara låg men projektet kan bli implmenterad
 
 
 # Standup 2
-**Närvarande**:
-**Datum**: 2022-04-11
+**Närvarande**:<br>
+**Datum**: 2022-04-11<br>
 Kommer komma...
