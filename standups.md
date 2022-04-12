@@ -31,7 +31,21 @@ Idag kommer vara en ihop samling om hur vi ska utveckla en poker ai och all möj
 Specifikt kommer **issue:** **#3** och **#5** jobbas med.
 
 # Standup 3
-**Närvarande**:<br>
+**Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
 **Datum**: 2022-04-12<br>
-Kommer komma...
 
+* Bestämelse:
+	- Forskning inom vad för typer av alorithmer till poker finns
+	- Matematiken och teorier angående poker
+	- Nästa träff 13 April
+
+Vi har efter att kollat igenom olika variationer av poker kommit fram till att Texas Hold'em utan bets kommer vara steg 1 för att bygga
+en ai för. Med titt på olika python spelmotor verkar pygame vara det enda verkliga alternativet.
+
+Planen för idag är mer undersökning och forskning angående poker och hur man byggar en ai till den.
+
+
+# Standup 4
+**Närvarande**: <br>
+**Datum**: 2022-04-13<br>
+Kommer komma ...
