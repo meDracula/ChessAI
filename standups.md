@@ -46,6 +46,25 @@ Planen för idag är mer undersökning och forskning angående poker och hur man
 
 
 # Standup 4
-**Närvarande**: <br>
+**Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
 **Datum**: 2022-04-13<br>
+
+* Bestämelse:
+	- På börjar att bygga poker spelet
+	- Hoppas blir klar med poker spelet den 21 april
+	- Pygame blir spelmotor
+	- Nästa träff 18 April
+
+I våran undersökning av algoritmer för poker ai har **CFR** kommit fram.
+**OBS** alla i grupp blev lite upptagna med annat och hade önskat mer produktiviet.
+
+Pygame blir spelmotor som val. På grund av brist på alternativ.
+
+Planen för idag är bygga spelet. 
+Hoppet är att blir klar på måndag men förväntningar av buggar och problem kommer alltid komma.
+Därför är förhoppningen på Torsdag den 21 april att bli helt klara med spelet.
+
+# Standup 5
+**Närvarande**: <br>
+**Datum**: 2022-04-18<br>
 Kommer komma ...
