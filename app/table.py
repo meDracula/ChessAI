@@ -1,39 +1,27 @@
 from app.dealer import Dealer
 
 
-class PokerTable():
-    def __init__(self):
-        #self.player = Player()
+
+class Table():
+    def __init__(self, *players):
+        self.players = players
         self.dealer = Dealer()
-        self.board = []
-        self.pot = 0
+        self.community_cards = []
 
 
-    def deal_cards(self):
-        for player in self.player:
+    def preflop(self):
+        for player in self.players:
             player.cards.append(self.dealer.deal(2))
 
-    def the_flop(self):
-        self.board.append(self.dealer.deal(3))
+    def flop(self):
+        self.community_cards.append(self.dealer.deal(3))
 
-    def turn_river(self):
-        self.board.append(self.dealer.deal(1))
+    def turn(self):
+        self.community_cards.append(self.dealer.deal(1))
 
+    def river(self):
+        self.community_cards.append(self.dealer.deal(1))
 
-    def bets(self):
-        if self.player._raise:
-            self.pot += self.player._raise
-
-
-    def player_turn(self):
-        for player in self.player:
-            match player:
-                case player.fold:
-                    pass
-                case player._raise:
-                    self.bets()
-                case  player.check:
-                    pass
 
 
 
