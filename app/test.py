@@ -1,10 +1,6 @@
 from scorer import *
 from table import *
-
-
-class Player:
-    def __init__(self):
-        self.cards = []
+from player import *
 
 
 class Scorer:
