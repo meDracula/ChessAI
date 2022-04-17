@@ -5,7 +5,7 @@ class Player:
 
     @property
     def hand(self):
-        return self.cards if len(self.cards) == 2 else None
+        return self.cards
 
     @hand.setter
     def hand(self, new_cards):
