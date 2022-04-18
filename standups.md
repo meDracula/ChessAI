@@ -65,6 +65,21 @@ Hoppet är att blir klar på måndag men förväntningar av buggar och problem k
 Därför är förhoppningen på Torsdag den 21 april att bli helt klara med spelet.
 
 # Standup 5
-**Närvarande**: <br>
+**Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
 **Datum**: 2022-04-18<br>
+
+* Bestämelse:
+	- Markus påbörjar sannolikheten på att en spelare vinner basert på hans kort
+	- Marco läser på om pygame samt leter game assets för poker
+	- Albin sätter ihop all kod till en Handler IO med game loop
+	- Nästa träff 19 April
+
+Idag fortsätter utveckling av poker spelet med att knyta ihop det till en spel loop som kommer oberoende gränssitt
+kunna spela poker. Det är även upplyft att kodblocking av det senaste issue som har gjort hade varit ett problem.
+Alla känner sig väldigt förlorade i hur vi ska gå framåt så en plannring eller en roadmap hade varit en passande plan.
+Detta kommer tas upp nästa standup.
+
+# Standup 6
+**Närvarande**: <br>
+**Datum**: 2022-04-19<br>
 Kommer komma ...
