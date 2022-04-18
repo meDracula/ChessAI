@@ -1,4 +1,4 @@
-from app.dealer import Dealer
+from dealer import Dealer
 
 
 class Table:
@@ -15,7 +15,10 @@ class Table:
         self.community_cards = self.dealer.deal(3)
 
     def turn(self):
-        self.community_cards = (self.dealer.deal(1))
+        self.community_cards += self.dealer.deal(1)
 
     def river(self):
-        self.community_cards = (self.dealer.deal(1))
+        self.community_cards += self.dealer.deal(1)
+
+    def __repr__(self):
+        return str(self.community_cards)
