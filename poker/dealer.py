@@ -11,6 +11,9 @@ class Dealer:
     def reset_deck(self):
         self.deck = self.init_deck()
 
+    def cards_left(self):
+        return len(self.deck)
+
     @classmethod
     def init_deck(cls):
         suits = ["d", "h", "s", "c"] # d: DIAMOND, h: HEART, s: SPADE, c: CLUB
