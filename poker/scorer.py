@@ -3,18 +3,15 @@ from treys import Card
 
 
 class Scorer:
-    def __init__(self, tabbel):
-        self.table = tabbel
+    def __init__(self, table):
+        self.table = table
         self.evaluator = Evaluator()
 
     # convert to trey library Card class
     def convert_cards(self, cards):
         trey_cards = []
         for card in cards:
-            if card.startswith('10'):
-                trey_cards.append(Card.new(card.replace('10', 'T')))
-            else:
-                trey_cards.append(Card.new(card))
+            trey_cards.append(Card.new(card))
         return trey_cards
 
     def get_winner(self):

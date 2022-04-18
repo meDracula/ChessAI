@@ -3,7 +3,7 @@ from dealer import Dealer
 
 class Table:
     def __init__(self, *players):
-        self.players = players
+        self.players = list(players)
         self.dealer = Dealer()
         self.community_cards = []
 
@@ -20,5 +20,10 @@ class Table:
     def river(self):
         self.community_cards += self.dealer.deal(1)
 
+    def player_out(self, name):
+        player = next(player for player in self.players if player.name == name)
+        self.players.remove(player)
+        del player.hand
+
     def __repr__(self):
-        return str(self.community_cards)
+        return f"{self.community_cards}"
