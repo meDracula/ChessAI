@@ -20,7 +20,7 @@ class Table:
     def river(self):
         self.community_cards += self.dealer.deal(1)
 
-    def player_out(self, name):
+    def player_fold(self, name):
         player = next(player for player in self.players if player.name == name)
         self.players.remove(player)
         del player.hand
