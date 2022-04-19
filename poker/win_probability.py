@@ -9,18 +9,18 @@ class WinProbability():
         self.player_scores = {}
 
     def cards_needed(self):
-        new_score = {}
+        new_score = 0
         for card in self.dealer.deck:
             self.scorer.convert_cards(card)
             new_score = self.scorer.evaluator.evaluate(self.scorer.convert_cards(card), self.scorer.convert_cards(player.cards))
             for player in self.players:
                 if new_score > self.player_scores:
-                    return card
+                    return 1
 
 
     def odds_per_card(self):
         cards_in_deck = self.dealer.cards_left
-        cards_needed = 1
+        cards_needed = self.cards_needed
         per_card = cards_needed/cards_in_deck
         percentage = f"{per_card:.0%}"
         return percentage
@@ -34,7 +34,7 @@ class WinProbability():
 
 w = WinProbability()
 print(w.odds_per_card())
-#
+
 
 
 
