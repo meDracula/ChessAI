@@ -1,6 +1,6 @@
 from table import Table
 from player import Player
-from scorer import Scorer
+from winner import winner_is
 
 
 class Poker:
@@ -54,6 +54,6 @@ class Poker:
 
 
     def winner(self):
-        player = Scorer(self.table).get_winner()
+        player = winner_is(self.table)
         return {'winner': (player.name, player.hand)}
 

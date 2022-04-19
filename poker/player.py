@@ -1,5 +1,6 @@
 from deck import Deck
 
+
 class Player:
     def __init__(self, name=None):
         self.name = name
@@ -20,7 +21,6 @@ class Player:
             self.cards = new_cards
         else:
             print("Invalide cards format")
-            return None
 
     @hand.deleter
     def hand(self):
