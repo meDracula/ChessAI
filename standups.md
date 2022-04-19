@@ -80,15 +80,8 @@ Alla känner sig väldigt förlorade i hur vi ska gå framåt så en plannring e
 Detta kommer tas upp nästa standup.
 
 # Standup 6
-**Närvarande**: <br>
-**Datum**: 2022-04-19<br>
-* Bestämelse:
-
-
-
-# Standup 7
 **Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
-**Datum**: 2022-04-20<br>
+**Datum**: 2022-04-19<br>
 * Bestämelse:
 	- Markus fortsätter med sannolikheten på att en spelare vinner basert på hans kort
 	- Marco börjar med att skapa spelet i pygame
@@ -98,3 +91,12 @@ Detta kommer tas upp nästa standup.
 
 Albin ska försöka fixa en roadmap till projektet,
 Vi forstätter att bygga spelet idag och börjar även med pygame delarna. Vi ska börja lite med reinforcement learning, som är machinelearning algorithmen vi ska använda oss utav.
+
+
+
+
+# Standup 7
+**Närvarande**: 
+**Datum**: 2022-04-20<br>
+* Bestämelse:
+
