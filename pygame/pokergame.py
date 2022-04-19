@@ -13,7 +13,6 @@ def draw_window():
     pygame.display.update()
 
 
-
 def main():
 
     run = True
