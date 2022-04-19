@@ -82,4 +82,19 @@ Detta kommer tas upp nästa standup.
 # Standup 6
 **Närvarande**: <br>
 **Datum**: 2022-04-19<br>
-Kommer komma ...
+* Bestämelse:
+
+
+
+# Standup 7
+**Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
+**Datum**: 2022-04-20<br>
+* Bestämelse:
+	- Markus fortsätter med sannolikheten på att en spelare vinner basert på hans kort
+	- Marco börjar med att skapa spelet i pygame
+	- Albin försöker fixa ett sätt att se vem som vinner utan treys library.
+	- Mahboubeh börjar undersöka mer om reinforcement learning
+	- Nästa träff 19 April
+
+Albin ska försöka fixa en roadmap till projektet,
+Vi forstätter att bygga spelet idag och börjar även med pygame delarna. Vi ska börja lite med reinforcement learning, som är machinelearning algorithmen vi ska använda oss utav.
