@@ -96,7 +96,14 @@ Vi forstätter att bygga spelet idag och börjar även med pygame delarna. Vi sk
 
 
 # Standup 7
-**Närvarande**: 
+**Närvarande**: Albin Thorsson, Markus Antonsen och Mahboubeh Azizzadeh<br>
 **Datum**: 2022-04-20<br>
 * Bestämelse:
+* 	- Markus jobbar med pygame och försöker fixa mer bilder till projektet.
+	- Marco fortsätter med pygame
+	- Albin ska sätta ihop poker delarna och sedan börja researcha machine learning.
+	- Mahboubeh Jobbar med pygame och försöker fixa mer bilder till projektet.
+
+Vi har diskuterat om vi eventuellt ska ta bort treys från vårat projekt, vi kom fram till att om det finns tid över senare så ska vi försöka få bort det.
+
 
