@@ -1,4 +1,4 @@
-from dealer import Dealer
+from .dealer import Dealer
 
 
 class Table:

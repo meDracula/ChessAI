@@ -1,6 +1,6 @@
-from table import Table
-from player import Player
-from winner import winner_is
+from .table import Table
+from .player import Player
+from .winner import winner_is
 
 
 class Poker:
