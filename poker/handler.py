@@ -12,6 +12,15 @@ class Poker:
         players = [Player(name) for name in names]
         self.table = Table(*players)
 
+
+    def new_match(self, player_leave=[], player_new=[]):
+        if len(player_new) > 0:
+            self.table.player_table += [Player(name) for name in player_new]
+
+        if len(player_leave) > 0:
+            for name in player_leave:
+                self.table.player_leave(name)
+
         self.table.preflop()
         return {player.name: player.hand for player in self.table.players}
 
