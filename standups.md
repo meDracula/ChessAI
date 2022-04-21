@@ -107,3 +107,15 @@ Vi forstätter att bygga spelet idag och börjar även med pygame delarna. Vi sk
 Vi har diskuterat om vi eventuellt ska ta bort treys från vårat projekt, vi kom fram till att om det finns tid över senare så ska vi försöka få bort det.
 
 
+# Standup 8
+**Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
+**Datum**: 2022-04-21<br>
+* Bestämelse:
+* 	- Markus jobbar med pygame och försöker fixa mer bilder till projektet.
+	- Marco fortsätter med pygame
+	- Albin ska reseracha machinelearning algorthmer
+	- Mahboubeh Jobbar med pygame och försöker fixa mer bilder till projektet.
+
+Poker spelet är nu färdigt och vi alla ska code reviewa det. 
+
+
