@@ -24,7 +24,8 @@ TITLE = "POKER"
 BGCOLOR = DARKGREY
 STARTING_TEAM = 'orange'  # orange or blue
 
-SPRITESHEET = 'assets/TileSet.png'
+#images
+BOARD = 'assets/poker_board.png'
 TILESIZE = 64  # 64, 32, 16
 GRIDWIDTH = WIDTH / TILESIZE
 GRIDHEIGHT = HEIGHT / TILESIZE

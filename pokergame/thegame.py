@@ -7,6 +7,7 @@ from pokergame import settings
 class Game:
     def __init__(self):
 
+
         pygame.init()
         self.screen = pygame.display.set_mode((settings.WIDTH, settings.HEIGHT))
         pygame.display.set_caption(settings.TITLE)
@@ -14,7 +15,8 @@ class Game:
         self.load_data()
 
     def load_data(self):
-        pass
+        self.poker_board = pygame.image.load(settings.BOARD)
+        self.poker_board = pygame.transform.scale(self.poker_board, (1024, 768))
 
     def new(self):
         pass
@@ -37,7 +39,8 @@ class Game:
         pass
 
     def draw(self):
-        self.screen.fill(settings.BGCOLOR)
+        self.screen.fill(settings.GREEN)
+        self.screen.blit(self.poker_board, (0, 0))
         pygame.display.flip()
 
     def events(self):

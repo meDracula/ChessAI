@@ -19,7 +19,7 @@ class Player:
         if all(card in og_deck for card in new_cards):
             self.cards = new_cards
         else:
-            print("Invalide cards format")
+            print("Invalide assets format")
             return None
 
     @hand.deleter

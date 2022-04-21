@@ -24,7 +24,7 @@ class Poker:
             return self.winner()
 
         self.table.flop()
-        return {'community cards': str(self.table)}
+        return {'community assets': str(self.table)}
 
 
     def turn(self, *drop_players):
@@ -35,7 +35,7 @@ class Poker:
             return self.winner()
 
         self.table.turn()
-        return {'community cards': str(self.table)}
+        return {'community assets': str(self.table)}
 
 
     def river(self, *drop_players):
@@ -46,7 +46,7 @@ class Poker:
             return self.winner()
 
         self.table.river()
-        return {'community cards': str(self.table)}
+        return {'community assets': str(self.table)}
 
 
     def winner(self):
