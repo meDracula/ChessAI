@@ -1,4 +1,5 @@
-from deck import Deck
+from .deck import Deck, Template_Deck
+
 
 class Player:
     def __init__(self, name=None):
@@ -15,13 +16,12 @@ class Player:
             print("Invalide deck format")
             return None
 
-        og_deck = Deck.init_deck()
-        if all(card in og_deck for card in new_cards):
+        if all(card in Template_Deck for card in new_cards):
             self.cards = new_cards
         else:
             print("Invalide cards format")
-            return None
 
     @hand.deleter
     def hand(self):
         self.cards = []
+

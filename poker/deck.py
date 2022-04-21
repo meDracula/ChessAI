@@ -10,3 +10,6 @@ class Deck:
         deck = [rank+suit for rank in cls.ranks for suit in cls.suits]
         shuffle(deck)
         return deck
+
+
+Template_Deck = Deck.init_deck()
