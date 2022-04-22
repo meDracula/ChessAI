@@ -10,7 +10,7 @@ The player now select a seat within a X amount of time.
 * **IF** player does not select with in time frame the game will begin without the player.
 * **ELSE** The match begins.
 
-<img src="pokertableconcept.png" alt="Poker table concept"">
+![Poker table concept](pokertableconcept.png)
 
 ### A Match
 A match start with the **pre flop round**.
