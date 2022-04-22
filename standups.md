@@ -116,6 +116,19 @@ Vi har diskuterat om vi eventuellt ska ta bort treys från vårat projekt, vi ko
 	- Albin ska reseracha machinelearning algorthmer
 	- Mahboubeh Jobbar med pygame och försöker fixa mer bilder till projektet.
 
-Poker spelet är nu färdigt och vi alla ska code reviewa det. 
+Poker spelet är nu färdigt och vi alla ska code reviewa det.
+
+
+# Standup 8
+**Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
+**Datum**: 2022-04-22<br>
+* Bestämelse:
+* 	- Markus jobbar med pygame och försöker fixa mer bilder till projektet.
+	- Marco fortsätter med pygame
+	- Albin ska reseracha machinelearning algorthmer
+	- Mahboubeh Jobbar med pygame och försöker fixa mer bilder till projektet.
+
+Vi fortsätter som vi har gjort tidigare. Idag pratade vi även hur vi tänkte oss att pygame ska se ut och vilken funktionalitet vi vill ha. Det kommer med en bild på det här.
+
 
 
