@@ -3,12 +3,14 @@ The user start the game and gets introduced to a start up menu.
 This menu contains one button saying start and a input field where the user can enter intergers.
 This integers represent who many poker ai will be playing around the table.
 
-## Game beginngs 
-Player press start and the a new screen appear with a poker table and 8 seats. 
+## Game beginngs
+Player press start and the a new screen appear with a poker table and 8 seats.
 The amount of ai the player enter into the input field will affect how many seats are occupied.
 The player now select a seat within a X amount of time.
 * **IF** player does not select with in time frame the game will begin without the player.
 * **ELSE** The match begins.
+
+<img src="pokertableconcept.png" alt="Poker table concept"">
 
 ### A Match
 A match start with the **pre flop round**.
@@ -25,7 +27,7 @@ After the player have select by this two options the next player will be prompte
 This will continue player by player having to pick between call or fold.
 
 Once all player have picked. The **Flop round** begins. Now three cards called the community cards will appear in the middle of
-the table. Now the first player will have the same prompt as before, Call or Fold. 
+the table. Now the first player will have the same prompt as before, Call or Fold.
 And the same routine with going one by one player have to select a choice.
 
 The next round is the **Turn round** this round will add one more card the community cards. And same routine for the players.<br>
