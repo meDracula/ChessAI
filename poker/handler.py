@@ -1,6 +1,6 @@
-from .table import Table
-from .player import Player
-from .winner import winner_is
+from poker.table import Table
+from poker.player import Player
+from poker.winner import winner_is
 
 
 class Poker:
@@ -9,11 +9,24 @@ class Poker:
 
 
     def new_game(self, *names):
+        """
+            Start a new poker game.
+
+            :param names: Write name, name, ..., name for every player to create.
+        """
         players = [Player(name) for name in names]
         self.table = Table(*players)
 
 
     def new_match(self, player_leave=[], player_new=[]):
+        """
+            Start a new poker match.
+
+            :param player_leave: A empty list where names of players are named that will leave the game.
+            :param player_new: A empty list where new names of players that will be created are add to.
+
+            :return: A dictonary { player name: hand }, key player name, value player hand
+        """
         if len(player_new) > 0:
             self.table.player_table += [Player(name) for name in player_new]
 
@@ -26,6 +39,11 @@ class Poker:
 
 
     def folds(self, *players):
+        """
+            The function will fold mentioned active players in a match.
+
+            :param players: Write name, name, ..., name of player names
+        """
         for player_name in players:
             self.table.player_fold(player_name)
 
@@ -63,6 +81,11 @@ class Poker:
 
 
     def winner(self):
+        """
+            This function evaluates the winner of current table left on the table.
+
+            :return: {'winner': (name, hand)} A dictionary with key winner and value tuple player name and hand
+        """
         player = winner_is(self.table)
         return {'winner': (player.name, player.hand)}
 
