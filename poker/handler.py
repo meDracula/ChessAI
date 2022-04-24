@@ -18,7 +18,7 @@ class Poker:
         self.table = Table(players)
 
 
-    def new_match(self, player_leave=[], player_new=[]):
+    def new_match(self, player_leave=[], player_add=[]):
         """Start a new poker match, and returns a dictonary of all players cards.
 
             Function new_match will start a match of poker.
@@ -26,15 +26,15 @@ class Poker:
             new_match allows players to leave or add new players to play.
 
             :param player_leave: list of player names that will leave the game.
-            :param player_new: list of new names of players to create for the game.
+            :param player_add: list of new names of players to create for the game.
             :type player_leave: list
-            :type player_new: list
+            :type player_add: list
             :type name: str
 
             :return: A dictonary { player name: hand }, key player name, value player hand
         """
-        if len(player_new) > 0:
-            self.table.player_table += [Player(name) for name in player_new]
+        if len(player_add) > 0:
+            self.table.player_table += [Player(name) for name in player_add]
 
         if len(player_leave) > 0:
             for name in player_leave:
