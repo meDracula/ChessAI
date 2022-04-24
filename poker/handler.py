@@ -5,21 +5,31 @@ from poker.winner import winner_is
 
 class Poker:
     def new_game(self, *names):
-        """
-            Start a new poker game.
+        """Start a new poker game, and no return.
 
-            :param names: Write name, name, ..., name for every player to create.
+            Every player name entered as a argument to parameter names will be create.
+            The function will setup a table with all of the new players entered.
+
+            :param names: Multiple arguments of str of names.
+            :type names: tuple
+            :type name: str
         """
         players = [Player(name) for name in names]
         self.table = Table(players)
 
 
     def new_match(self, player_leave=[], player_new=[]):
-        """
-            Start a new poker match.
+        """Start a new poker match, and returns a dictonary of all players cards.
 
-            :param player_leave: A empty list where names of players are named that will leave the game.
-            :param player_new: A empty list where new names of players that will be created are add to.
+            Function new_match will start a match of poker.
+            This function requires that new_game function have been executed first.
+            new_match allows players to leave or add new players to play.
+
+            :param player_leave: list of player names that will leave the game.
+            :param player_new: list of new names of players to create for the game.
+            :type player_leave: list
+            :type player_new: list
+            :type name: str
 
             :return: A dictonary { player name: hand }, key player name, value player hand
         """
@@ -34,11 +44,12 @@ class Poker:
         return {player.name: player.hand for player in self.table.players}
 
 
-    def folds(self, *players):
-        """
-            The function will fold mentioned active players in a match.
+    def folds(self, *names):
+        """The function will fold playing players from the match, return nothing.
 
-            :param players: Write name, name, ..., name of player names
+            :param names: multiple arguments of player names.
+            :type names: tuple
+            :type name: str
         """
         for player_name in players:
             self.table.player_fold(player_name)
@@ -77,11 +88,9 @@ class Poker:
 
 
     def winner(self):
-        """
-            This function evaluates the winner of current table left on the table.
+        """This function evaluates the winner of current playing players in a match, returns the winning player.
 
             :return: {'winner': (name, hand)} A dictionary with key winner and value tuple player name and hand
         """
         player = winner_is(self.table)
         return {'winner': (player.name, player.hand)}
-
