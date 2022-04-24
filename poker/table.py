@@ -1,9 +1,9 @@
-from .dealer import Dealer
+from poker.dealer import Dealer
 
 
 class Table:
-    def __init__(self, *players):
-        self.player_table = list(players)
+    def __init__(self, players):
+        self.player_table = players
         self.players = []
         self.dealer = Dealer()
         self.community_cards = []

@@ -1,4 +1,4 @@
-from .deck import Deck, Template_Deck
+from poker.deck import Deck, Template_Deck
 
 
 class Player:

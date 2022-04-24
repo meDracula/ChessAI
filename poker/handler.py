@@ -4,10 +4,6 @@ from poker.winner import winner_is
 
 
 class Poker:
-    def __init__(self):
-        self.table = None
-
-
     def new_game(self, *names):
         """
             Start a new poker game.
@@ -15,7 +11,7 @@ class Poker:
             :param names: Write name, name, ..., name for every player to create.
         """
         players = [Player(name) for name in names]
-        self.table = Table(*players)
+        self.table = Table(players)
 
 
     def new_match(self, player_leave=[], player_new=[]):
