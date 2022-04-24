@@ -14,9 +14,7 @@ class Poker:
             :type names: tuple
             :type name: str
         """
-        players = [Player(name) for name in names]
-        self.table = Table(players)
-
+        self.table = Table({name:Player(name) for name in names})
 
     def new_match(self, player_leave=[], player_add=[]):
         """Start a new poker match, and returns a dictonary of all players cards.
@@ -33,16 +31,23 @@ class Poker:
 
             :return: A dictonary { player name: hand }, key player name, value player hand
         """
+        self.table.clear_players()
+
         if len(player_add) > 0:
-            self.table.player_table += [Player(name) for name in player_add]
+            for name in player_add:
+                if name not in self.table.player_table:
+                    self.table.player_table[name] = Player(name)
+                else:
+                    raise ValueError("Player name already taken!")
 
         if len(player_leave) > 0:
-            for name in player_leave:
-                self.table.player_leave(name)
+            if all(player in self.table.player_table for player in player_leave):
+                self.table.player_leave(player_leave)
+            else:
+                raise ValueError("Player leave name is unknown!")
 
         self.table.preflop()
         return {player.name: player.hand for player in self.table.players}
-
 
     def folds(self, *names):
         """The function will fold playing players from the match, return nothing.
@@ -51,19 +56,19 @@ class Poker:
             :type names: tuple
             :type name: str
         """
-        for player_name in players:
-            self.table.player_fold(player_name)
-
+        for name in names:
+            if any(name == player.name for player in self.table.players):
+                self.table.player_fold(name)
+            else:
+                raise ValueError("Player name is not playing a match!")
 
     def __iter__(self):
         self.rounds = 0
         return self
 
-
     def __next__(self):
         self.rounds += 1
         return self.next_round(self.rounds)
-
 
     def next_round(self, rounds):
         match rounds:
@@ -85,7 +90,6 @@ class Poker:
             case 4:
                 return self.winner()
         raise StopIteration()
-
 
     def winner(self):
         """This function evaluates the winner of current playing players in a match, returns the winning player.
