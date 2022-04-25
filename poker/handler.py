@@ -68,7 +68,7 @@ class Poker:
 
     def __next__(self):
         self.rounds += 1
-        # TIMEIT & RESOLVE BUG #29
+
         if len(self.table.players) > 1 and not self.match_winner:
             return self.next_round(self.rounds)
         elif self.match_winner:
