@@ -26,6 +26,7 @@ STARTING_TEAM = 'orange'  # orange or blue
 
 #images
 BOARD = 'assets/poker_board.png'
+MENU = 'assets/menu-icon.png'
 TILESIZE = 64  # 64, 32, 16
 GRIDWIDTH = WIDTH / TILESIZE
 GRIDHEIGHT = HEIGHT / TILESIZE

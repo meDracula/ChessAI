@@ -16,7 +16,8 @@ class Game:
 
     def load_data(self):
         self.poker_board = pygame.image.load(settings.BOARD)
-        self.poker_board = pygame.transform.scale(self.poker_board, (1024, 768))
+        self.poker_board = pygame.transform.scale(self.poker_board, (settings.WIDTH, settings.HEIGHT))
+        self.menu_icon = pygame.image.load(settings.MENU)
 
     def new(self):
         pass
@@ -41,6 +42,7 @@ class Game:
     def draw(self):
         self.screen.fill(settings.GREEN)
         self.screen.blit(self.poker_board, (0, 0))
+        self.screen.blit(self.menu_icon, (10, 10))
         pygame.display.flip()
 
     def events(self):
