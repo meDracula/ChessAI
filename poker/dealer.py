@@ -9,7 +9,7 @@ class Dealer:
         return [self.deck.pop(0) for _ in range(n_cards)]
 
     def reset_deck(self):
-        self.deck = self.init_deck()
+        self.deck = Deck.init_deck()
 
     def cards_left(self):
         return len(self.deck)
