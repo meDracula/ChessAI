@@ -126,9 +126,17 @@ Poker spelet är nu färdigt och vi alla ska code reviewa det.
 * 	- Markus jobbar med pygame och försöker fixa mer bilder till projektet.
 	- Marco fortsätter med pygame
 	- Albin ska reseracha machinelearning algorthmer
-	- Mahboubeh Jobbar med pygame och försöker fixa mer bilder till projektet.
+	- Mahboubeh Jobbar med unittest tills Marco är klar med sin del
 
 Vi fortsätter som vi har gjort tidigare. Idag pratade vi även hur vi tänkte oss att pygame ska se ut och vilken funktionalitet vi vill ha. Det kommer med en bild på det här.
 
 
+# Standup 9
+**Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
+**Datum**: 2022-04-25<br>
+* Bestämelse:
+* 	- Markus och Marco fortsätter med pygame.
+	- Albin ska reseracha machinelearning algorthmer. 
+	- Mahboubeh Jobbar med unittest.
 
+Vi fortsätter som vi har gjort tidigare. 
