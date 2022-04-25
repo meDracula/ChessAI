@@ -6,13 +6,12 @@ from pokergame import settings
 
 class Game:
     def __init__(self):
-
-
         pygame.init()
         self.screen = pygame.display.set_mode((settings.WIDTH, settings.HEIGHT))
         pygame.display.set_caption(settings.TITLE)
         self.clock = pygame.time.Clock()
         self.load_data()
+        self.clicked = False
 
     def load_data(self):
         self.poker_board = pygame.image.load(settings.BOARD)
@@ -21,6 +20,11 @@ class Game:
 
     def new(self):
         pass
+
+    def menu_popup(self):
+
+        font = pygame.font.Font('freesansbold.ttf', 32)
+        text = font.render(settings.MENU_TEXT, True, (0, 0, 255))
 
     def run(self):
         # Game loop - set self.playing = False to end the game
@@ -40,9 +44,28 @@ class Game:
         pass
 
     def draw(self):
+
+        pos = pygame.mouse.get_pos()
+        if self.menu_icon.get_rect().collidepoint(pos):
+            if pygame.mouse.get_pressed()[0] == 1:
+                if self.clicked == False:
+                    self.clicked = True
+                    print('clicked')
+                else:
+                    self.clicked = False
+            #if pygame.mouse.get_pressed()[0] == 1 and self.clicked == True:
+            #    self.clicked = False
+
         self.screen.fill(settings.GREEN)
         self.screen.blit(self.poker_board, (0, 0))
         self.screen.blit(self.menu_icon, (10, 10))
+
+        if self.clicked:
+            rect = pygame.draw.rect(self.screen, (255, 255, 255), (280, 200, 450, 350), 200)
+
+        # self.screen.blit(rect, (200, 200))
+
+        # self.screen.blit(text, (200, 200))
         pygame.display.flip()
 
     def events(self):
