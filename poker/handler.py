@@ -31,7 +31,7 @@ class Poker:
 
             :return: A dictonary { player name: hand }, key player name, value player hand
         """
-        self.table.clear_players()
+        self.table.players.clear()
 
         if len(player_add) > 0:
             for name in player_add:
@@ -56,11 +56,10 @@ class Poker:
             :type names: tuple
             :type name: str
         """
-        for name in names:
-            if any(name == player.name for player in self.table.players):
-                self.table.player_fold(name)
-            else:
-                raise ValueError("Player name is not playing a match!")
+        if set(names).issubset([player.name for player in self.table.players]):
+            self.table.player_fold(names)
+        else:
+            raise ValueError("Player name is not playing a match!")
 
     def __iter__(self):
         self.rounds = 0
@@ -68,6 +67,7 @@ class Poker:
 
     def __next__(self):
         self.rounds += 1
+        # TIMEIT & RESOLVE BUG #29
         return self.next_round(self.rounds)
 
     def next_round(self, rounds):

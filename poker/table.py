@@ -22,13 +22,10 @@ class Table:
     def river(self):
         self.community_cards += self.dealer.deal(1)
 
-    def clear_players(self):
-        self.players = []
-
-    def player_fold(self, name):
-        player = next(player for player in self.players if player.name == name)
-        self.players.remove(player)
-        del player.hand
+    def player_fold(self, names):
+        for player in filter(lambda player: player.name in names, self.players):
+            self.players.remove(player)
+            del player.hand
 
     def player_leave(self, names):
         for name in names:
