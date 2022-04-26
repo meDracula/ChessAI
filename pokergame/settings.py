@@ -27,6 +27,7 @@ STARTING_TEAM = 'orange'  # orange or blue
 #images
 BOARD = 'assets/poker_board.png'
 MENU = 'assets/menu-icon.png'
+
 TILESIZE = 64  # 64, 32, 16
 GRIDWIDTH = WIDTH / TILESIZE
 GRIDHEIGHT = HEIGHT / TILESIZE
@@ -34,6 +35,9 @@ TILESIZE_OFFSET = 10
 MENU_TEXT = 'TESTING'
 CALL_TEXT = 'CALL'
 FOLD_TEXT = 'FOLD'
+OPTION = 'Add something'
+LEADERBOARD = 'Leaderboards'
+EXIT_GAME = 'Exit Game'
 
 #cards
 CARDWIDHT = 60

@@ -15,6 +15,7 @@ class Game:
         self.load_data()
         self.clicked = False
         self.font = pygame.font.Font('freesansbold.ttf', 32)
+        self.open_game_menu = False
 
     def load_data(self):
         self.poker_board = pygame.image.load(settings.BOARD)
@@ -376,15 +377,7 @@ class Game:
 
     def draw(self):
         pos = pygame.mouse.get_pos()
-        if self.menu_icon.get_rect().collidepoint(pos):
-            pass
-            #if pygame.mouse.get_pressed()[0] == 1:
-                #if self.clicked == False:
-                 #   self.clicked = True
-                 #   print('clicked')
-               # else:
-                #    self.clicked = False
-        print(pygame.mouse.get_pressed()[0], self.menu_icon.get_rect().collidepoint(pos))
+
         self.screen.fill(settings.GREEN)
         self.screen.blit(self.poker_board, (0, 0))
         self.screen.blit(self.menu_icon, (10, 10))
@@ -400,11 +393,29 @@ class Game:
         if call.collidepoint(pos):
             if self.clicked:
                 print("hej")
-        if call.collidepoint(pos):
+                self.clicked = False
+        if fold.collidepoint(pos):
             if self.clicked:
                 pass
-        if self.clicked:
+
+        if self.menu_icon.get_rect().collidepoint(pos) and self.clicked:
+            self.open_game_menu = True
+        if not self.clicked:fd
+            self.open_game_menu = False
+
+        if self.open_game_menu:
             game_menu = pygame.draw.rect(self.screen, (255, 255, 255), (280, 200, 450, 350), 200)
+            another_option = leaderboard = pygame.draw.rect(self.screen, (0, 0, 0), (380, 230, 250, 50), 2)
+            option_text = self.font.render(settings.OPTION, True, (0, 0, 255))
+            self.screen.blit(option_text, (387, 237))
+
+            leaderboard = pygame.draw.rect(self.screen, (0, 0, 0), (380, 300, 250, 50), 2)
+            leaderboard_text = self.font.render(settings.LEADERBOARD, True, (0, 0, 255))
+            self.screen.blit(leaderboard_text, (387, 307))
+
+            leave_game = pygame.draw.rect(self.screen, (0, 0, 0), (380, 370, 250, 50), 2)
+            exit_text = self.font.render(settings.EXIT_GAME, True, (0, 0, 255))
+            self.screen.blit(exit_text, (387, 377))
 
         pygame.display.flip()
 
