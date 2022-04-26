@@ -12,4 +12,4 @@ class Deck:
         return deck
 
 
-Template_Deck = Deck.init_deck()
+Template_Deck = tuple(Deck.init_deck())
