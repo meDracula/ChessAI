@@ -48,24 +48,30 @@ class Game:
     def draw(self):
         pos = pygame.mouse.get_pos()
         if self.menu_icon.get_rect().collidepoint(pos):
-            if pygame.mouse.get_pressed()[0] == 1:
-                if self.clicked == False:
-                    self.clicked = True
-                    print('clicked')
-                else:
-                    self.clicked = False
-
+            pass
+            #if pygame.mouse.get_pressed()[0] == 1:
+                #if self.clicked == False:
+                 #   self.clicked = True
+                 #   print('clicked')
+               # else:
+                #    self.clicked = False
+        print(pygame.mouse.get_pressed()[0], self.menu_icon.get_rect().collidepoint(pos))
         self.screen.fill(settings.GREEN)
         self.screen.blit(self.poker_board, (0, 0))
         self.screen.blit(self.menu_icon, (10, 10))
-        deal = pygame.draw.rect(self.screen, (0, 0, 0), (320, 450, 170, 50), 2)
+        call = pygame.draw.rect(self.screen, (0, 0, 0), (320, 450, 170, 50), 2)
         deal_text = self.font.render(settings.CALL_TEXT, True, (0, 0, 255))
         self.screen.blit(deal_text, (360, 460))
         fold = pygame.draw.rect(self.screen, (0, 0, 0), (520, 450, 170, 50), 2)
         fold_text = self.font.render(settings.FOLD_TEXT, True, (0, 0, 255))
         self.screen.blit(fold_text, (560, 460))
 
-
+        if call.collidepoint(pos):
+            if self.clicked:
+                print("hej")
+        if call.collidepoint(pos):
+            if self.clicked:
+                pass
         if self.clicked:
             game_menu = pygame.draw.rect(self.screen, (255, 255, 255), (280, 200, 450, 350), 200)
 
@@ -77,6 +83,9 @@ class Game:
                 self.quit()
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 self.quit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    self.clicked = True
 
     def show_start_screen(self):
         pass
