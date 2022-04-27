@@ -1,6 +1,3 @@
-from .deck import Deck, Template_Deck
-
-
 class Player:
     def __init__(self, name=None):
         self.name = name
@@ -12,16 +9,11 @@ class Player:
 
     @hand.setter
     def hand(self, new_cards):
-        if not(isinstance(new_cards, list) and len(new_cards) == 2):
-            print("Invalide deck format")
-            return None
-
-        if all(card in Template_Deck for card in new_cards):
-            self.cards = new_cards
-        else:
-            print("Invalide cards format")
+        self.cards = new_cards
 
     @hand.deleter
     def hand(self):
         self.cards = []
 
+    def __repr__(self):
+        return f"Hand for {self.name} = {self.cards}"
