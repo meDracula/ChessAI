@@ -7,7 +7,7 @@ class TestPoker(unittest.TestCase):
     # test where no active actions are taken by the players
     def test_poker_game(self):
         poker_game = Poker()
-        poker_game.new_game("Olle", "Kalle")
+        poker_game.new_game(("Olle", "Kalle"))
         poker_game.new_match()
         [poker_game.next_round(i) for i in range(1, 5)]
 
@@ -17,7 +17,7 @@ class TestPoker(unittest.TestCase):
 
     def test_poker_game_fold(self):
         poker_game = Poker()
-        poker_game.new_game("Olle", "Maria", "Kalle", "Anna")
+        poker_game.new_game(("Olle", "Maria", "Kalle", "Anna"))
         poker_game.new_match()
 
         for i in range(1, 5):
