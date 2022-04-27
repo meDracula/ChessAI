@@ -140,3 +140,14 @@ Vi fortsätter som vi har gjort tidigare. Idag pratade vi även hur vi tänkte o
 	- Mahboubeh Jobbar med unittest.
 
 Vi fortsätter som vi har gjort tidigare. 
+
+
+# Standup 10
+**Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
+**Datum**: 2022-04-27<br>
+* Bestämelse:
+* 	- Markus och Marco fortsätter med pygame och samtidigt läser teori.
+	- Albin läser teori denna vecka.  
+	- Mahboubeh Jobbar med en bugg i pygame.
+
+Vi har bestämt oss att ha lite mer fokus på teorin så länge. 
