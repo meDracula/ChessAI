@@ -11,7 +11,7 @@ class Poker:
             The function will setup a table with all of the new players entered.
 
             :param names: Multiple arguments of str of names.
-            :type names: tuple
+            :type names: *args
             :type name: str
         """
         self.table = Table({name:Player(name) for name in names})
