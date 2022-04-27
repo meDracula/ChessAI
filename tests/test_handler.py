@@ -25,8 +25,7 @@ class TestPoker(unittest.TestCase):
                 poker_game.table.player_fold("Kalle")   # kalle leaves the current game here in the last round
             poker_game.next_round(i)
 
-        print("Game and summary")
-        print("Community cards: ", poker_game.table)
+        print("\nCommunity cards: ", poker_game.table)
         print(poker_game.table.players)
         print(poker_game.winner())
 
