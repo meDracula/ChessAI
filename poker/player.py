@@ -1,4 +1,4 @@
-from .deck import Template_Deck
+from .deck import Deck, Template_Deck
 
 
 class Player:
@@ -25,5 +25,3 @@ class Player:
     def hand(self):
         self.cards = []
 
-    def __repr__(self):
-        return f"Hand for {self.name} = {self.cards}"
