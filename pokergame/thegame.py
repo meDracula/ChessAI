@@ -400,12 +400,13 @@ class Game:
 
         if self.menu_icon.get_rect().collidepoint(pos) and self.clicked:
             self.open_game_menu = True
-        if not self.clicked:fd
-            self.open_game_menu = False
+            self.clicked = False
+
+
 
         if self.open_game_menu:
             game_menu = pygame.draw.rect(self.screen, (255, 255, 255), (280, 200, 450, 350), 200)
-            another_option = leaderboard = pygame.draw.rect(self.screen, (0, 0, 0), (380, 230, 250, 50), 2)
+            another_option = pygame.draw.rect(self.screen, (0, 0, 0), (380, 230, 250, 50), 2)
             option_text = self.font.render(settings.OPTION, True, (0, 0, 255))
             self.screen.blit(option_text, (387, 237))
 
@@ -413,9 +414,24 @@ class Game:
             leaderboard_text = self.font.render(settings.LEADERBOARD, True, (0, 0, 255))
             self.screen.blit(leaderboard_text, (387, 307))
 
-            leave_game = pygame.draw.rect(self.screen, (0, 0, 0), (380, 370, 250, 50), 2)
+            exit_game = pygame.draw.rect(self.screen, (0, 0, 0), (380, 370, 250, 50), 2)
             exit_text = self.font.render(settings.EXIT_GAME, True, (0, 0, 255))
             self.screen.blit(exit_text, (387, 377))
+
+            if another_option.collidepoint(pos):
+                if self.clicked:
+                    print("click")
+                    self.clicked = False
+
+            if leaderboard.collidepoint(pos):
+                if self.clicked:
+                    print("click")
+                    self.clicked = False
+
+            if exit_game.collidepoint(pos):
+                if self.clicked:
+                    print("click")
+                    self.clicked = False
 
         pygame.display.flip()
 

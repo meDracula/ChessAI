@@ -35,7 +35,7 @@ TILESIZE_OFFSET = 10
 MENU_TEXT = 'TESTING'
 CALL_TEXT = 'CALL'
 FOLD_TEXT = 'FOLD'
-OPTION = 'Add something'
+OPTION = 'Add opponent'
 LEADERBOARD = 'Leaderboards'
 EXIT_GAME = 'Exit Game'
 
