@@ -52,7 +52,7 @@ class Game:
         self.screen.fill(settings.GREEN)
         self.screen.blit(self.poker_board, (0, 0))
         self.screen.blit(self.menu_icon, (10, 10))
-        self.screen.blit(self.cardhandler.card_load(), (300, 120))
+        self.screen.blit(self.cardhandler.card_load('Td'), (300, 120))
         deal = pygame.draw.rect(self.screen, (0, 0, 0), (320, 450, 170, 50), 2)
         call = pygame.draw.rect(self.screen, (0, 0, 0), (320, 450, 170, 50), 2)
         deal_text = self.font.render(settings.CALL_TEXT, True, (0, 0, 255))
