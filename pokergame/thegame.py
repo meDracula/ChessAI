@@ -13,7 +13,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.load_data()
         self.clicked = False
-        self.font = pygame.font.Font('freesansbold.ttf', 32)
+        self.font = pygame.font.Font('freesansbold.ttf', 30)
         self.open_game_menu = False
 
     def load_data(self):
@@ -76,20 +76,21 @@ class Game:
 
 
         if self.open_game_menu:
-            game_menu = pygame.draw.rect(self.screen, (255, 255, 255), (280, 200, 450, 350), 200)
-            another_option = pygame.draw.rect(self.screen, (0, 0, 0), (380, 230, 250, 50), 2)
-            option_text = self.font.render(settings.OPTION, True, (0, 0, 255))
-            self.screen.blit(option_text, (387, 237))
+            game_menu = pygame.draw.rect(self.screen, (1, 127, 36), (370, 220, 270, 210), 200)
+
+            add_opponent = pygame.draw.rect(self.screen, (0, 0, 0), (380, 230, 250, 50), 2)
+            add_opponent_text = self.font.render(settings.ADD_OPPONENT, True, (0, 0, 255))
+            self.screen.blit(add_opponent_text, (410, 237))
 
             leaderboard = pygame.draw.rect(self.screen, (0, 0, 0), (380, 300, 250, 50), 2)
             leaderboard_text = self.font.render(settings.LEADERBOARD, True, (0, 0, 255))
-            self.screen.blit(leaderboard_text, (387, 307))
+            self.screen.blit(leaderboard_text, (410, 307))
 
             exit_game = pygame.draw.rect(self.screen, (0, 0, 0), (380, 370, 250, 50), 2)
             exit_text = self.font.render(settings.EXIT_GAME, True, (0, 0, 255))
-            self.screen.blit(exit_text, (387, 377))
+            self.screen.blit(exit_text, (430, 377))
 
-            if another_option.collidepoint(pos):
+            if add_opponent.collidepoint(pos):
                 if self.clicked:
                     print("click")
                     self.clicked = False
@@ -101,7 +102,7 @@ class Game:
 
             if exit_game.collidepoint(pos):
                 if self.clicked:
-                    print("click")
+                    self.quit()
                     self.clicked = False
 
         pygame.display.flip()
