@@ -119,7 +119,7 @@ Vi har diskuterat om vi eventuellt ska ta bort treys från vårat projekt, vi ko
 Poker spelet är nu färdigt och vi alla ska code reviewa det.
 
 
-# Standup 8
+# Standup 9
 **Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
 **Datum**: 2022-04-22<br>
 * Bestämelse:
@@ -131,7 +131,7 @@ Poker spelet är nu färdigt och vi alla ska code reviewa det.
 Vi fortsätter som vi har gjort tidigare. Idag pratade vi även hur vi tänkte oss att pygame ska se ut och vilken funktionalitet vi vill ha. Det kommer med en bild på det här.
 
 
-# Standup 9
+# Standup 10
 **Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
 **Datum**: 2022-04-25<br>
 * Bestämelse:
@@ -142,7 +142,7 @@ Vi fortsätter som vi har gjort tidigare. Idag pratade vi även hur vi tänkte o
 Vi fortsätter som vi har gjort tidigare. 
 
 
-# Standup 10
+# Standup 11
 **Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
 **Datum**: 2022-04-27<br>
 * Bestämelse:
@@ -153,7 +153,7 @@ Vi fortsätter som vi har gjort tidigare.
 Vi har bestämt oss att ha lite mer fokus på teorin så länge. 
 
 
-# Standup 11
+# Standup 12
 **Närvarande**: Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
 **Datum**: 2022-04-28<br>
 * Bestämelse:
