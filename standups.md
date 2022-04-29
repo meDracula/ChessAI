@@ -151,3 +151,14 @@ Vi fortsätter som vi har gjort tidigare.
 	- Mahboubeh Jobbar med en bugg i pygame.
 
 Vi har bestämt oss att ha lite mer fokus på teorin så länge. 
+
+
+# Standup 11
+**Närvarande**: Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
+**Datum**: 2022-04-28<br>
+* Bestämelse:
+* 	- Markus och Marco fortsätter med pygame och samtidigt läser teori.
+	- Albin läser teori denna vecka.  
+	- Mahboubeh jobbar med GUI för menu fönstret i pygame.
+
+Vi har bestämt oss att ha lite mer fokus på teorin så länge. 
