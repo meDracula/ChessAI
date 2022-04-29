@@ -1,5 +1,7 @@
 import sys
 import pygame
+
+from poker import Poker
 from pokergame import settings
 from pokergame.cardhandler import CardHandler
 
@@ -15,6 +17,7 @@ class Game:
         self.clicked = False
         self.font = pygame.font.Font('freesansbold.ttf', 30)
         self.open_game_menu = False
+        self.poker = Poker()
 
     def load_data(self):
         self.poker_board = pygame.image.load(settings.BOARD)
@@ -61,17 +64,28 @@ class Game:
         fold_text = self.font.render(settings.FOLD_TEXT, True, (0, 0, 255))
         self.screen.blit(fold_text, (560, 460))
 
-        if call.collidepoint(pos):
-            if self.clicked:
-                print("hej")
-                self.clicked = False
-        if fold.collidepoint(pos):
-            if self.clicked:
-                pass
+        for player in self.poker.table.players:
+            player.call = False
+            player.fold = True
+
+
+            if call.collidepoint(pos):
+                if self.clicked:
+                    player.call = True
+                    self.clicked = False
+            if fold.collidepoint(pos):
+                if self.clicked:
+                    self.poker.folds(player.name)
+
+            if player.call:
+                self.poker.__next__()
 
         if self.menu_icon.get_rect().collidepoint(pos) and self.clicked:
             self.open_game_menu = True
             self.clicked = False
+
+
+
 
 
 
