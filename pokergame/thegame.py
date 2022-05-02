@@ -1,6 +1,5 @@
 import sys
 import pygame
-
 from poker import Poker
 from pokergame import settings
 from pokergame.cardhandler import CardHandler
@@ -50,6 +49,9 @@ class Game:
         pass
 
     def draw(self):
+        self.poker.new_game('a', 'b', 'c')
+        self.poker.new_match()
+        print(self.poker.new_match()['a'])
         pos = pygame.mouse.get_pos()
 
         self.screen.fill(settings.GREEN)
