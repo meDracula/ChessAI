@@ -84,17 +84,16 @@ class Game:
             self.open_game_menu = True
             self.clicked = False
 
-
-
-
-
-
         if self.open_game_menu:
-            game_menu = pygame.draw.rect(self.screen, (1, 127, 36), (370, 220, 270, 210), 200)
+            game_menu = pygame.draw.rect(self.screen, (1, 127, 36), (370, 220, 310, 210), 200)
 
             add_opponent = pygame.draw.rect(self.screen, (0, 0, 0), (380, 230, 250, 50), 2)
             add_opponent_text = self.font.render(settings.ADD_OPPONENT, True, (0, 0, 255))
             self.screen.blit(add_opponent_text, (410, 237))
+
+            exit_menu = pygame.draw.lines(self.screen, (0, 0, 0), False,
+                                          ((650, 230), (670, 250), (670, 230), (650, 250),
+                                           (650, 230), (670, 230), (650, 250), (670, 250)), 2)
 
             leaderboard = pygame.draw.rect(self.screen, (0, 0, 0), (380, 300, 250, 50), 2)
             leaderboard_text = self.font.render(settings.LEADERBOARD, True, (0, 0, 255))
@@ -117,6 +116,11 @@ class Game:
             if exit_game.collidepoint(pos):
                 if self.clicked:
                     self.quit()
+                    self.clicked = False
+
+            if exit_menu.collidepoint(pos):
+                if self.clicked:
+                    self.open_game_menu = False
                     self.clicked = False
 
         pygame.display.flip()
