@@ -68,7 +68,6 @@ class Game:
             player.call = False
             player.fold = True
 
-
             if call.collidepoint(pos):
                 if self.clicked:
                     player.call = True
