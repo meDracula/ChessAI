@@ -1,7 +1,6 @@
 import sys
 import pygame
 
-from poker import Poker
 from pokergame import settings
 from pokergame.cardhandler import CardHandler
 from poker import Poker
@@ -47,43 +46,44 @@ class Game:
         sys.exit()
 
     def update(self):
-        global community_card
-        self.poker.new_game('a', 'b', 'c')
-
-        self.hands = self.poker.new_match()
-        for round_ in self.poker:
-            community_card = round_
-        self.winner = community_card
-        # Update portion of the game loop
         pass
+        # Update portion of the game loop
+        # global community_card
+        # self.poker.new_game('a', 'b', 'c')
+        #
+        # self.hands = self.poker.new_match()
+        # for round_ in self.poker:
+        #     community_card = round_
+        # self.winner = community_card
 
     def draw(self):
         pos = pygame.mouse.get_pos()
 
-        self.poker.new_game('a', 'b', 'c')
-        self.poker.new_match()
-        # print(self.poker.table.players.name)
+        self.poker.new_game('a', 'b', 'c', 'd')
+        players = self.poker.new_match()
 
         self.screen.fill(settings.GREEN)
         self.screen.blit(self.poker_board, (0, 0))
         self.screen.blit(self.menu_icon, (10, 10))
 
-        self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['a'][0]), (275, 120))
-        self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['a'][1]), (350, 120))
+        if len(players) >= 2:
+            self.screen.blit(self.cardhandler.card_load(players['a'][0]), (275, 120))
+            self.screen.blit(self.cardhandler.card_load(players['a'][1]), (350, 120))
 
-        self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['b'][0]), (625, 120))
-        self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['b'][1]), (700, 120))
+            self.screen.blit(self.cardhandler.card_load(players['b'][0]), (275, 560))
+            self.screen.blit(self.cardhandler.card_load(players['b'][1]), (350, 560))
 
-        self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['c'][0]), (275, 560))
-        self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['c'][1]), (350, 560))
+            if len(players) >= 3:
+                self.screen.blit(self.cardhandler.card_load(players['c'][0]), (625, 120))
+                self.screen.blit(self.cardhandler.card_load(players['c'][1]), (700, 120))
 
-        # self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['d'][0]), (625, 560))
-        # self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['d'][1]), (700, 560))
+                if len(players) == 4:
+                    self.screen.blit(self.cardhandler.card_load(players['d'][0]), (625, 560))
+                    self.screen.blit(self.cardhandler.card_load(players['d'][1]), (700, 560))
 
         # self.screen.blit(self.cardhandler.card_load(self.winner), (425, 360))
         # self.screen.blit(self.cardhandler.card_load(self.winner), (500, 360))
 
-        self.screen.blit(self.cardhandler.card_load('Td'), (300, 120))
         deal = pygame.draw.rect(self.screen, (0, 0, 0), (320, 450, 170, 50), 2)
         call = pygame.draw.rect(self.screen, (0, 0, 0), (320, 450, 170, 50), 2)
         deal_text = self.font.render(settings.CALL_TEXT, True, (0, 0, 255))
@@ -138,19 +138,19 @@ class Game:
                     self.clicked = False
 
 
-        for player in self.poker.table.players:
-            player.call = False
-            player.fold = True
+        for players in self.poker.table.players:
+            players.call = False
+            players.fold = True
 
             if call.collidepoint(pos):
                 if self.clicked:
-                    player.call = True
+                    players.call = True
                     self.clicked = False
             if fold.collidepoint(pos):
                 if self.clicked:
-                    self.poker.folds(player.name)
+                    self.poker.folds(players.name)
 
-            if player.call:
+            if players.call:
                 self.poker.__next__()
 
 
