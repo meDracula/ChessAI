@@ -162,3 +162,14 @@ Vi har bestämt oss att ha lite mer fokus på teorin så länge.
 	- Mahboubeh jobbar med GUI för menu fönstret i pygame.
 
 Vi har bestämt oss att ha lite mer fokus på teorin så länge. 
+
+
+# Standup 13
+**Närvarande**: Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
+**Datum**: 2022-04-29<br>
+* Bestämelse:
+* 	- Markus och Marco fortsätter med pygame.
+	- Albin läser teori och komer göra en sammanfattning av det han har kommit till den 9e maj till resten av gruppen. 
+	- Mahboubeh jobbar med player i pygame.
+
+Vi har bestämt oss att försöka göra klart pygame fram till 6e maj.
