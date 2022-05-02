@@ -45,4 +45,4 @@ The choice of a new match will be found by a button asking the player if the wan
 > The option to leave will be available until the player has made a choice in the pre-flop round.
 
 > **NOTE** The game design here will most likely change and mutate by what the game developers considers to be right design features.
-> E.i. this design is not set in stone.
+> I.E. this design is not set in stone.
