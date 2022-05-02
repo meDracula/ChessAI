@@ -2,6 +2,7 @@ import sys
 import pygame
 from pokergame import settings
 from pokergame.cardhandler import CardHandler
+from poker import Poker
 
 
 class Game:
@@ -15,6 +16,7 @@ class Game:
         self.clicked = False
         self.font = pygame.font.Font('freesansbold.ttf', 30)
         self.open_game_menu = False
+        self.poker = Poker()
 
     def load_data(self):
         self.poker_board = pygame.image.load(settings.BOARD)
@@ -43,15 +45,42 @@ class Game:
         sys.exit()
 
     def update(self):
+        global community_card
+        self.poker.new_game('a', 'b', 'c')
+
+        self.hands = self.poker.new_match()
+        for round_ in self.poker:
+            community_card = round_
+        self.winner = community_card
         # Update portion of the game loop
         pass
 
     def draw(self):
         pos = pygame.mouse.get_pos()
 
+        self.poker.new_game('a', 'b', 'c')
+        self.poker.new_match()
+        # print(self.poker.table.players.name)
+
         self.screen.fill(settings.GREEN)
         self.screen.blit(self.poker_board, (0, 0))
         self.screen.blit(self.menu_icon, (10, 10))
+
+        self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['a'][0]), (275, 120))
+        self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['a'][1]), (350, 120))
+
+        self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['b'][0]), (625, 120))
+        self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['b'][1]), (700, 120))
+
+        self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['c'][0]), (275, 560))
+        self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['c'][1]), (350, 560))
+
+        # self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['d'][0]), (625, 560))
+        # self.screen.blit(self.cardhandler.card_load(self.poker.new_match()['d'][1]), (700, 560))
+
+        # self.screen.blit(self.cardhandler.card_load(self.winner), (425, 360))
+        # self.screen.blit(self.cardhandler.card_load(self.winner), (500, 360))
+
         self.screen.blit(self.cardhandler.card_load('Td'), (300, 120))
         deal = pygame.draw.rect(self.screen, (0, 0, 0), (320, 450, 170, 50), 2)
         call = pygame.draw.rect(self.screen, (0, 0, 0), (320, 450, 170, 50), 2)
@@ -113,6 +142,7 @@ class Game:
                     self.clicked = False
 
         pygame.display.flip()
+        pygame.event.wait()
 
     def events(self):
         for event in pygame.event.get():
