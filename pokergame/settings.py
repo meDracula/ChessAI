@@ -44,10 +44,10 @@ EXIT_GAME = 'Exit Game'
 #cards
 CARDWIDHT = 60
 CARDHEIGHT = 90
-ace_of_clubs = 'assets/Ac.png'
+ace_of_clubs = 'assets/ace of clubs.png'
 ace_of_spades = 'assets/ace of spades.png'
-ace_of_hearts = 'assets/Ah.png'
-ace_of_diamonds = 'assets/Ad.png'
+ace_of_hearts = 'assets/ace of hearts.png'
+ace_of_diamonds = 'assets/ace of diamonds.png'
 
 eight_of_clubs = 'assets/eight of clubs.png'
 eight_of_spades = 'assets/eight of spades.png'
