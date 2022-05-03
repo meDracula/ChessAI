@@ -25,17 +25,6 @@ class Game:
         self.menu_icon = pygame.image.load(settings.MENU)
         self.top_5 = leaderboard.show_leaderboard()
 
-
-
-
-
-
-
-
-
-
-
-
     def new(self):
         pass
 
@@ -106,8 +95,6 @@ class Game:
         fold = pygame.draw.rect(self.screen, (0, 0, 0), (520, 450, 170, 50), 2)
         fold_text = self.font.render(settings.FOLD_TEXT, True, (0, 0, 255))
         self.screen.blit(fold_text, (560, 460))
-
-
 
         if self.menu_icon.get_rect().collidepoint(pos) and self.clicked:
             self.open_game_menu = True
