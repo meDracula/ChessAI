@@ -3,6 +3,7 @@ import pygame
 from poker import Poker
 from pokergame import settings
 from pokergame.cardhandler import CardHandler
+import leaderboard
 
 
 class Game:
@@ -22,6 +23,18 @@ class Game:
         self.poker_board = pygame.image.load(settings.BOARD)
         self.poker_board = pygame.transform.scale(self.poker_board, (settings.WIDTH, settings.HEIGHT))
         self.menu_icon = pygame.image.load(settings.MENU)
+        self.top_5 = leaderboard.show_leaderboard()
+
+
+
+
+
+
+
+
+
+
+
 
     def new(self):
         pass
@@ -51,7 +64,6 @@ class Game:
     def draw(self):
         self.poker.new_game('a', 'b', 'c')
         self.poker.new_match()
-        print(self.poker.new_match()['a'])
         pos = pygame.mouse.get_pos()
 
         self.screen.fill(settings.GREEN)
@@ -97,9 +109,42 @@ class Game:
                     self.clicked = False
 
             if leaderboard.collidepoint(pos):
+
+
                 if self.clicked:
-                    print("click")
-                    self.clicked = False
+                    pygame.draw.rect(self.screen, (1, 127, 36), (220, 150, 600, 400), 200)
+                    player = pygame.draw.rect(self.screen, (0, 0, 0), (270, 220, 220, 300), 2)
+                    cards = pygame.draw.rect(self.screen, (0, 0, 0), (570, 220, 200, 300), 2)
+
+                    # player and card text
+                    player_text = self.font.render("players", True, (0, 0, 255))
+                    cards_text = self.font.render("cards", True, (0, 0, 255))
+                    self.screen.blit(player_text, (310, 180))
+                    self.screen.blit(cards_text, (625, 180))
+
+                    # all the players from leaderboard
+                    first_player = self.font.render(f"{self.top_5[0][0][0]}: {self.top_5[0][0][1]}", True, (0, 0, 255))
+                    second_player = self.font.render(f"{self.top_5[0][1][0]}: {self.top_5[0][1][1]}", True, (0, 0, 255))
+                    third_player = self.font.render(f"{self.top_5[0][2][0]}: {self.top_5[0][2][1]}", True, (0, 0, 255))
+                    fourth_player = self.font.render(f"{self.top_5[0][3][0]}: {self.top_5[0][3][1]}", True, (0, 0, 255))
+                    fifth_player = self.font.render(f"{self.top_5[0][4][0]}: {self.top_5[0][4][1]}", True, (0, 0, 255))
+                    self.screen.blit(first_player, (275, 240))
+                    self.screen.blit(second_player, (275, 290))
+                    self.screen.blit(third_player, (275, 340))
+                    self.screen.blit(fourth_player, (275, 390))
+                    self.screen.blit(fifth_player, (275, 440))
+
+                    # all the cards from leaderboard
+                    first_card = self.font.render(f"{self.top_5[1][0][0]}: {self.top_5[1][0][1]}", True, (0, 0, 255))
+                    second_card = self.font.render(f"{self.top_5[1][1][0]}: {self.top_5[1][1][1]} ", True, (0, 0, 255))
+                    third_card = self.font.render(f"{self.top_5[1][2][0]}: {self.top_5[1][2][1]} ", True, (0, 0, 255))
+                    fourth_card = self.font.render(f"{self.top_5[1][3][0]}: {self.top_5[1][3][1]} ", True, (0, 0, 255))
+                    fifth_card = self.font.render(f"{self.top_5[1][4][0]}: {self.top_5[1][4][1]} ", True, (0, 0, 255))
+                    self.screen.blit(first_card, (580, 240))
+                    self.screen.blit(second_card, (580, 290))
+                    self.screen.blit(third_card, (580, 340))
+                    self.screen.blit(fourth_card, (580, 390))
+                    self.screen.blit(fifth_card, (580, 440))
 
             if exit_game.collidepoint(pos):
                 if self.clicked:
@@ -110,7 +155,6 @@ class Game:
                 if self.clicked:
                     self.open_game_menu = False
                     self.clicked = False
-
 
         for player in self.poker.table.players:
             player.call = False
@@ -126,7 +170,6 @@ class Game:
 
             if player.call:
                 self.poker.__next__()
-
 
         pygame.display.flip()
 

@@ -39,6 +39,8 @@ ADD_OPPONENT = 'Add opponent'
 LEADERBOARD = 'Leaderboards'
 EXIT_GAME = 'Exit Game'
 
+
+
 #cards
 CARDWIDHT = 60
 CARDHEIGHT = 90
