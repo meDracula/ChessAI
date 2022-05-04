@@ -173,3 +173,25 @@ Vi har bestämt oss att ha lite mer fokus på teorin så länge.
 	- Mahboubeh jobbar med player i pygame.
 
 Vi har bestämt oss att försöka göra klart pygame fram till 6e maj.
+
+
+# Standup 14
+**Närvarande**: Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
+**Datum**: 2022-05-02<br>
+* Bestämelse:
+* 	- Markus och Marco fortsätter med pygame.
+	- Albin läser teori och komer göra en sammanfattning av det han har kommit till den 9e maj till resten av gruppen. 
+	- Mahboubeh jobbar med player i pygame.
+
+Vi har bestämt oss att försöka göra klart pygame fram till 6e maj.
+
+
+# Standup 15
+**Närvarande**: Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
+**Datum**: 2022-05-04<br>
+* Bestämelse:
+* 	- Markus och Marco fortsätter med pygame.
+	- Albin ska påbörja att skriva en jupyter notebook om monta Carlo tree search. 
+	- Mahboubeh jobbar med player i pygame.
+
+Vi har bestämt oss att försöka göra klart pygame fram till 6e maj.
