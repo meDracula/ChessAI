@@ -190,7 +190,7 @@ Vi har bestämt oss att försöka göra klart pygame fram till 6e maj.
 **Närvarande**: Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
 **Datum**: 2022-05-04<br>
 * Bestämelse:
-* 	- Markus och Marco fortsätter med pygame.
+* 	- Markus och Marco gör research för AI.
 	- Albin ska påbörja att skriva en jupyter notebook om monta Carlo tree search. 
 	- Mahboubeh jobbar med player i pygame.
 
