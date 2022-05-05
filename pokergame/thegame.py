@@ -127,42 +127,52 @@ class Game:
 
         if PlayerUI.number_of_players_2_rect is not None and PlayerUI.number_of_players_2_rect.collidepoint(self.pos):
             if self.clicked:
-                PlayerUI.number_of_players_2_rect = None
-                self.open_number_of_players_menu = False
-                self.poker.new_game("Player 1", "Player 2")
-                self.poker.new_match()
-                self.clicked = False
-                PlayerUI.number_of_players = 2
-                PlayerUI.hide_all = False
-                self.show_initial_player_ui()
+                self.start_new_game(2)
 
         if PlayerUI.number_of_players_3_rect is not None and PlayerUI.number_of_players_3_rect.collidepoint(self.pos):
             if self.clicked:
-                PlayerUI.number_of_players_3_rect = None
-                self.open_number_of_players_menu = False
-                self.poker.new_game("Player 1", "Player 2", "Player 3")
-                self.poker.new_match()
-                self.clicked = False
-                PlayerUI.number_of_players = 3
-                PlayerUI.hide_all = False
-                self.show_initial_player_ui()
+                self.start_new_game(3)
 
         if PlayerUI.number_of_players_4_rect is not None and PlayerUI.number_of_players_4_rect.collidepoint(self.pos):
             if self.clicked:
-                PlayerUI.number_of_players_4_rect = None
-                self.open_number_of_players_menu = False
-                self.poker.new_game("Player 1", "Player 2", "Player 3", "Player 4")
-                self.poker.new_match()
-                self.clicked = False
-                PlayerUI.number_of_players = 4
-                PlayerUI.hide_all = False
-                self.show_initial_player_ui()
+                self.start_new_game(4)
 
         for player_ui in PlayerUI.player_uis:
             player_ui.check_current_player_status()
         # self.check_player_statuses()  # check the status of all current players in the UI
 
         pygame.display.flip()
+
+    def start_new_game(self, number_of_players):
+        if number_of_players == 2:
+            PlayerUI.number_of_players_2_rect = None
+            self.open_number_of_players_menu = False
+            self.poker.new_game("Player 1", "Player 2")
+            self.poker.new_match()
+            self.clicked = False
+            PlayerUI.number_of_players = number_of_players
+            PlayerUI.hide_all = False
+            self.show_initial_player_ui()
+
+        elif number_of_players == 3:
+            PlayerUI.number_of_players_3_rect = None
+            self.open_number_of_players_menu = False
+            self.poker.new_game("Player 1", "Player 2", "Player 3")
+            self.poker.new_match()
+            self.clicked = False
+            PlayerUI.number_of_players = number_of_players
+            PlayerUI.hide_all = False
+            self.show_initial_player_ui()
+
+        elif number_of_players == 4:
+            PlayerUI.number_of_players_4_rect = None
+            self.open_number_of_players_menu = False
+            self.poker.new_game("Player 1", "Player 2", "Player 3", "Player 4")
+            self.poker.new_match()
+            self.clicked = False
+            PlayerUI.number_of_players = number_of_players
+            PlayerUI.hide_all = False
+            self.show_initial_player_ui()
 
     def events(self):
         for event in pygame.event.get():

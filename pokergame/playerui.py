@@ -95,7 +95,7 @@ class PlayerUI:
             self.game.screen.blit(self.cardhandler.card_load(card), (card_pos_x, self.y_pos_card))
 
     def load_community_cards_ui(self):
-        community_card_pos_x = self.x_pos_card
+        community_card_pos_x = 250
         for card in self.game.poker.table.community_cards:
             community_card_pos_x += self.x_offset_card
             self.game.screen.blit(self.cardhandler.card_load(card), (community_card_pos_x, self.y_pos_card + 210))
@@ -138,4 +138,6 @@ class PlayerUI:
             try:
                 self.game.poker.__next__()
             except StopIteration:
-                print(f"winner is: {self.game.poker.winner()}")
+                print(f"{self.game.poker.winner()}")  # print winner
+
+
