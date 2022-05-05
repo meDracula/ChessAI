@@ -24,9 +24,12 @@ TITLE = "POKER"
 BGCOLOR = DARKGREY
 STARTING_TEAM = 'orange'  # orange or blue
 
-#images
+# images
 BOARD = 'assets/poker_board.png'
 MENU = 'assets/menu-icon.png'
+NUMBER_2 = 'assets/number_2.png'
+NUMBER_3 = 'assets/number_3.png'
+NUMBER_4 = 'assets/number_4.png'
 
 TILESIZE = 64  # 64, 32, 16
 GRIDWIDTH = WIDTH / TILESIZE
@@ -35,17 +38,18 @@ TILESIZE_OFFSET = 10
 MENU_TEXT = 'TESTING'
 CALL_TEXT = 'CALL'
 FOLD_TEXT = 'FOLD'
-ADD_OPPONENT = 'Add opponent'
 LEADERBOARD = 'Leaderboards'
 EXIT_GAME = 'Exit Game'
+NEW_GAME = 'New Game'
+NUMBER_OF_PLAYERS = 'Number Of Players'
 
-#cards
+# cards
 CARDWIDHT = 60
 CARDHEIGHT = 90
-ace_of_clubs = 'assets/Ac.png'
+ace_of_clubs = 'assets/ace of clubs.png'
 ace_of_spades = 'assets/ace of spades.png'
-ace_of_hearts = 'assets/Ah.png'
-ace_of_diamonds = 'assets/Ad.png'
+ace_of_hearts = 'assets/ace of hearts.png'
+ace_of_diamonds = 'assets/ace of diamonds.png'
 
 eight_of_clubs = 'assets/eight of clubs.png'
 eight_of_spades = 'assets/eight of spades.png'
