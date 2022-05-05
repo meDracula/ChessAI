@@ -113,6 +113,7 @@ class Game:
                 if self.clicked:
                     self.open_number_of_players_menu = True
                     PlayerUI.hide_all = True
+                    PlayerUI.show_winner = False
                     self.clicked = False
 
         if PlayerUI.new_game is not None and self.open_number_of_players_menu:
@@ -144,6 +145,7 @@ class Game:
         pygame.display.flip()
 
     def start_new_game(self, number_of_players):
+        self.poker.__iter__()
         if number_of_players == 2:
             PlayerUI.number_of_players_2_rect = None
             self.open_number_of_players_menu = False

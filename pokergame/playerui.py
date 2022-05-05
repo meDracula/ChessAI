@@ -1,6 +1,6 @@
 import cardhandler
-import pygame
 import settings
+import pygame
 
 
 class PlayerUI:
@@ -23,6 +23,7 @@ class PlayerUI:
     player_uis = []
 
     hide_all = False
+    show_winner = False
 
     def __init__(self, player, pygame_object, initial_x_pos, initial_y_pos):
         self.player = player  # orginal player object from model classes
@@ -53,6 +54,8 @@ class PlayerUI:
             self.load_player_cards_ui()
             self.load_community_cards_ui()
             self.load_player_place_ui()
+        if self.show_winner:
+            self.show_winner_ui()
 
     def load_positions(self):
         if self.player.name == "Player 1":
@@ -135,9 +138,22 @@ class PlayerUI:
                 self.game.clicked = False
 
         if self.player.call:
-            try:
-                self.game.poker.__next__()
-            except StopIteration:
-                print(f"{self.game.poker.winner()}")  # print winner
+            if not PlayerUI.show_winner:
+                try:
+                    self.game.poker.__next__()
+                except StopIteration:
+                    print(f"{self.game.poker.winner().name}")
+                    PlayerUI.show_winner = True
 
+    def show_winner_ui(self):
+        x_pos_winner = 350
+        y_pos_winner = 10
 
+        winner_place_text = self.game.font.render(f"Winner    Is   {self.game.poker.winner().name}", True, (0, 0, 0))
+        self.game.screen.blit(winner_place_text, (x_pos_winner, y_pos_winner))
+
+        while pygame.time.get_ticks() < 10000:
+            self.game.screen.blit(winner_place_text, (x_pos_winner, y_pos_winner))
+
+            pygame.display.flip()
+            pygame.time.wait(2)

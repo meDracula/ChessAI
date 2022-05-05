@@ -98,4 +98,4 @@ class Poker:
             :return: {'winner': (name, hand)} A dictionary with key winner and value tuple player name and hand
         """
         player = winner_is(self.table)
-        return {'winner': (player.name, player.hand)}
+        return player
