@@ -70,7 +70,7 @@ class Game:
             player_ui.load()
             PlayerUI.player_uis.append(player_ui)
 
-
+    def draw(self):
         self.pos = pygame.mouse.get_pos()
 
         self.poker.new_game('a', 'b', 'c', 'd')
