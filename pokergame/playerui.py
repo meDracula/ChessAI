@@ -135,6 +135,8 @@ class PlayerUI:
             if self.game.clicked:
                 print(f"{self.player.name} folded")
                 self.game.poker.folds(self.player.name)
+                if len(self.game.poker.table.players) < 2:
+                    PlayerUI.show_winner = True
                 self.game.clicked = False
 
         if self.player.call:
