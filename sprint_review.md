@@ -40,4 +40,25 @@ led av Markus, Mahboubeh, Marco. Sprinten kommer gå fram till 2022-05-09.
 **Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh, Marco Vrban<br>
 **Datum**: 2022-04-29 2022-05-09<br>
 
+Målet 1 med sprint 3 var att göra en fungerade alpha version av Pygame Poker gränssnittet.
+Detta mål har tyvärr inte fullständigt blivit nått men övervägande del har utvecklas.
+Anledning till en fullständig alpha version ännu var för att målet var förstort när man tar in utomstånde händelser
+som kommer emellan slutförändet av pygame. Utveckling av Pygame har som alla utveckling blivit infesterad av buggar
+som måste eradikeras innan det är fullständigt klart.
+
+Mål 2 med sprint 3 var att undersöka och presentera forsking av Monte Carlo CRF.
+Del 1 av att undersöka har blivit gjort slutförst i tid men persentation var inte färdigt i tid.
+Detta betyder att den kommer presenteras nu under sprint 4 på tisdag den 10 maj.
+
+Vårt mål att förbättra oss till sprint 4 är tids optimering och sätta realistiska scope på hur mycket vi hinner utveckla.
+
+Sprint nr 4 kommer innehålla forsking för Poker Texas holdem led nu av Marco, Mahboubeh och Markus.
+Medans Albin kommer utveckla klart Pygame med troligen lite hjälp från Mahboubeh. 
+Samt med utveckling kommer även förberedelser för göras och kanske påbörjas för Monte Carlo CRF bot.
+Sprinten 4 kommer pågå fram till 2022-05-16.
+
+# Sprint Review 4
+**Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh, Marco Vrban<br>
+**Datum**: 2022-05-09 2022-05-16<br>
+
 kommer komma...
