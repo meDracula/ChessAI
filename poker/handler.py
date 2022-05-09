@@ -97,5 +97,8 @@ class Poker:
 
             :return: {'winner': (name, hand)} A dictionary with key winner and value tuple player name and hand
         """
-        player = winner_is(self.table)
+        if len(self.table.players) == 1:
+            player = self.table.players[0]
+        else:
+            player = winner_is(self.table)
         return player
