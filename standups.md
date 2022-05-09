@@ -123,7 +123,7 @@ Poker spelet är nu färdigt och vi alla ska code reviewa det.
 **Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
 **Datum**: 2022-04-22<br>
 * Bestämelse:
-* 	- Markus jobbar med pygame och försöker fixa mer bilder till projektet.
+ 	- Markus jobbar med pygame och försöker fixa mer bilder till projektet.
 	- Marco fortsätter med pygame
 	- Albin ska reseracha machinelearning algorthmer
 	- Mahboubeh Jobbar med unittest tills Marco är klar med sin del
@@ -135,7 +135,7 @@ Vi fortsätter som vi har gjort tidigare. Idag pratade vi även hur vi tänkte o
 **Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
 **Datum**: 2022-04-25<br>
 * Bestämelse:
-* 	- Markus och Marco fortsätter med pygame.
+ 	- Markus och Marco fortsätter med pygame.
 	- Albin ska reseracha machinelearning algorthmer. 
 	- Mahboubeh Jobbar med unittest.
 
@@ -146,7 +146,7 @@ Vi fortsätter som vi har gjort tidigare.
 **Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
 **Datum**: 2022-04-27<br>
 * Bestämelse:
-* 	- Markus och Marco fortsätter med pygame och samtidigt läser teori.
+ 	- Markus och Marco fortsätter med pygame och samtidigt läser teori.
 	- Albin läser teori denna vecka.  
 	- Mahboubeh Jobbar med en bugg i pygame.
 
@@ -157,7 +157,7 @@ Vi har bestämt oss att ha lite mer fokus på teorin så länge.
 **Närvarande**: Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
 **Datum**: 2022-04-28<br>
 * Bestämelse:
-* 	- Markus och Marco fortsätter med pygame och samtidigt läser teori.
+ 	- Markus och Marco fortsätter med pygame och samtidigt läser teori.
 	- Albin läser teori denna vecka.  
 	- Mahboubeh jobbar med GUI för menu fönstret i pygame.
 
@@ -168,7 +168,7 @@ Vi har bestämt oss att ha lite mer fokus på teorin så länge.
 **Närvarande**: Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
 **Datum**: 2022-04-29<br>
 * Bestämelse:
-* 	- Markus och Marco fortsätter med pygame.
+ 	- Markus och Marco fortsätter med pygame.
 	- Albin läser teori och komer göra en sammanfattning av det han har kommit till den 9e maj till resten av gruppen. 
 	- Mahboubeh jobbar med player i pygame.
 
@@ -195,3 +195,29 @@ Vi har bestämt oss att försöka göra klart pygame fram till 6e maj.
 	- Mahboubeh jobbar med player i pygame.
 
 Vi har bestämt oss att försöka göra klart pygame fram till 6e maj.
+> **NOTE** Standup den 5 maj blev inställde pågrund av ett grupp bestämlse av att inget behövs lyftas upp eller ändras i vad som pågår
+
+# Standup 16
+**Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
+**Datum**: 2022-05-09<br>
+* Bestämelse:
+	- Albin kommer slutföra sin presentation gällande Monte Carlo CRF och presentera den 10 maj(imorgon)
+	- Markus, Marco och Mahboubeh kommer kolla på MIT 6.0002 lection 2 & 3
+
+Pygame har blivit infesterad av buggar som kommer bli något nu fram i veckan som Albin och troligen med hjälpa av Mahboubeh 
+kommer jobba med. Men Mahboubeh samt Markus och Marco kommer nu börja forska inom Reinforcement learning och efter presentation imorgon
+kommer välja en algorithm att forska inom.
+
+Under standup gjordes en merge a pygame och pygame_player samt att äntligen merga in pygame pull request till main branchen.
+
+Kursen MIT 6.0002 är en MIT opencourseware vilket gör att den går att hitta på youtube.
+[Introduction to Computational Thinking and Data Science](https://www.youtube.com/playlist?list=PLUl4u3cNGP619EG1wp0kT-7rDE_Az5TNd)
+
+Det utfördes även sprint review 3 som var gällande Pygame och markerade Albin slutfördande i forsking av Reinforcement Learning och
+Monte Carlo CRF.
+
+# Standup 17
+**Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
+**Datum**: 2022-05-10<br>
+
+Kommer komma...
