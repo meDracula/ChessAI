@@ -177,7 +177,8 @@ class Game:
                 self.start_new_game(4)
 
         for player_ui in PlayerUI.player_uis:
-            player_ui.check_current_player_status()
+            if player_ui.call is not None and player_ui.fold is not None:
+                player_ui.check_current_player_status()
         # self.check_player_statuses()  # check the status of all current players in the UI
 
         pygame.display.flip()
