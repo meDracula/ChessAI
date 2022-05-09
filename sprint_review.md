@@ -34,10 +34,10 @@ Som grupp har kommunikation förbättrat sig med att använda oss mindre av gith
 hur projektet ska utföras.
 
 Nästa sprint 3 kommer vara fokuserat på en undersöking i monte carlo tree search led av Albin, och slutföra en alpha version av poker pygame spelet
-led av Markus, Mahboubeh, Marco. Sprinten kommer gå fram till 2022-05-06.
+led av Markus, Mahboubeh, Marco. Sprinten kommer gå fram till 2022-05-09.
 
 # Sprint Review 3
 **Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh, Marco Vrban<br>
-**Datum**: 2022-04-29 2022-05-06<br>
+**Datum**: 2022-04-29 2022-05-09<br>
 
 kommer komma...
