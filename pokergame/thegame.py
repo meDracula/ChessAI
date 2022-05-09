@@ -2,13 +2,12 @@ import sys
 import pygame
 from poker import Poker
 from pokergame import settings
-from pokergame.cardhandler import CardHandler
 import leaderboard
+from pokergame.playerui import PlayerUI
 
 
 class Game:
     def __init__(self):
-        self.cardhandler = CardHandler()
         pygame.init()
         self.screen = pygame.display.set_mode((settings.WIDTH, settings.HEIGHT))
         pygame.display.set_caption(settings.TITLE)
@@ -17,7 +16,10 @@ class Game:
         self.clicked = False
         self.font = pygame.font.Font('freesansbold.ttf', 30)
         self.open_game_menu = False
+        self.open_number_of_players_menu = False
         self.poker = Poker()
+        self.poker.__iter__()
+        self.pos = 0
 
     def load_data(self):
         self.poker_board = pygame.image.load(settings.BOARD)
@@ -58,10 +60,18 @@ class Game:
         #     community_card = round_
         # self.winner = community_card
 
-    def draw(self):
-        self.poker.new_game('a', 'b', 'c')
-        self.poker.new_match()
-        pos = pygame.mouse.get_pos()
+    def show_initial_player_ui(self):
+        x_pos_start = 200
+        y_pos_start = 150
+
+        PlayerUI.player_uis.clear()
+        for player in self.poker.table.players:
+            player_ui = PlayerUI(player, self, x_pos_start, y_pos_start)
+            player_ui.load()
+            PlayerUI.player_uis.append(player_ui)
+
+
+        self.pos = pygame.mouse.get_pos()
 
         self.poker.new_game('a', 'b', 'c', 'd')
         players = self.poker.new_match()
@@ -70,59 +80,38 @@ class Game:
         self.screen.blit(self.poker_board, (0, 0))
         self.screen.blit(self.menu_icon, (10, 10))
 
-        if len(players) >= 2:
-            self.screen.blit(self.cardhandler.card_load(players['a'][0]), (275, 120))
-            self.screen.blit(self.cardhandler.card_load(players['a'][1]), (350, 120))
 
-            self.screen.blit(self.cardhandler.card_load(players['b'][0]), (275, 560))
-            self.screen.blit(self.cardhandler.card_load(players['b'][1]), (350, 560))
+        for player_ui in PlayerUI.player_uis:
+            player_ui.load()
 
-            if len(players) >= 3:
-                self.screen.blit(self.cardhandler.card_load(players['c'][0]), (625, 120))
-                self.screen.blit(self.cardhandler.card_load(players['c'][1]), (700, 120))
-
-                if len(players) == 4:
-                    self.screen.blit(self.cardhandler.card_load(players['d'][0]), (625, 560))
-                    self.screen.blit(self.cardhandler.card_load(players['d'][1]), (700, 560))
-
-        # self.screen.blit(self.cardhandler.card_load(self.winner), (425, 360))
-        # self.screen.blit(self.cardhandler.card_load(self.winner), (500, 360))
-
-        deal = pygame.draw.rect(self.screen, (0, 0, 0), (320, 450, 170, 50), 2)
-        call = pygame.draw.rect(self.screen, (0, 0, 0), (320, 450, 170, 50), 2)
-        deal_text = self.font.render(settings.CALL_TEXT, True, (0, 0, 255))
-        self.screen.blit(deal_text, (360, 460))
-        fold = pygame.draw.rect(self.screen, (0, 0, 0), (520, 450, 170, 50), 2)
-        fold_text = self.font.render(settings.FOLD_TEXT, True, (0, 0, 255))
-        self.screen.blit(fold_text, (560, 460))
-
-        if self.menu_icon.get_rect().collidepoint(pos) and self.clicked:
+        if self.menu_icon.get_rect().collidepoint(self.pos) and self.clicked:
             self.open_game_menu = True
             self.clicked = False
+            self.open_number_of_players_menu = False
 
         if self.open_game_menu:
-            game_menu = pygame.draw.rect(self.screen, (1, 127, 36), (370, 220, 310, 210), 200)
+            game_menu = pygame.draw.rect(self.screen, (1, 127, 36), (370, 150, 310, 210), 200)
 
-            add_opponent = pygame.draw.rect(self.screen, (0, 0, 0), (380, 230, 250, 50), 2)
-            add_opponent_text = self.font.render(settings.ADD_OPPONENT, True, (0, 0, 255))
-            self.screen.blit(add_opponent_text, (410, 237))
+            leaderboard = pygame.draw.rect(self.screen, (0, 0, 0), (380, 230, 250, 50), 2)
+            leaderboard_text = self.font.render(settings.LEADERBOARD, True, (255, 255, 255))
+            self.screen.blit(leaderboard_text, (410, 237))
+
+            exit_game = pygame.draw.rect(self.screen, (0, 0, 0), (380, 300, 250, 50), 2)
+            exit_text = self.font.render(settings.EXIT_GAME, True, (255, 255, 255))
+            self.screen.blit(exit_text, (430, 307))
 
             exit_menu = pygame.draw.lines(self.screen, (0, 0, 0), False,
-                                          ((650, 230), (670, 250), (670, 230), (650, 250),
-                                           (650, 230), (670, 230), (650, 250), (670, 250)), 2)
+                                          ((650, 160), (670, 180), (670, 160), (650, 180),
+                                           (650, 160), (670, 160), (650, 180), (670, 180)), 2)
 
-            leaderboard = pygame.draw.rect(self.screen, (0, 0, 0), (380, 300, 250, 50), 2)
-            leaderboard_text = self.font.render(settings.LEADERBOARD, True, (0, 0, 255))
-            self.screen.blit(leaderboard_text, (410, 307))
+            PlayerUI.new_game = pygame.draw.rect(self.screen, (0, 0, 0), (380, 160, 250, 50), 2)
+            new_game_text = self.font.render(settings.NEW_GAME, True, (255, 255, 255))
+            self.screen.blit(new_game_text, (430, 167))
 
-            exit_game = pygame.draw.rect(self.screen, (0, 0, 0), (380, 370, 250, 50), 2)
-            exit_text = self.font.render(settings.EXIT_GAME, True, (0, 0, 255))
-            self.screen.blit(exit_text, (430, 377))
-
-            if add_opponent.collidepoint(pos):
+            if leaderboard.collidepoint(self.pos):
                 if self.clicked:
-                    print("click")
                     self.clicked = False
+
 
             if leaderboard.collidepoint(pos):
 
@@ -162,36 +151,86 @@ class Game:
                     self.screen.blit(fourth_card, (580, 390))
                     self.screen.blit(fifth_card, (580, 440))
 
-            if exit_game.collidepoint(pos):
+            if exit_game.collidepoint(self.pos):
                 if self.clicked:
                     self.quit()
                     self.clicked = False
 
-            if exit_menu.collidepoint(pos):
+
+            if exit_menu.collidepoint(self.pos):
                 if self.clicked:
                     self.open_game_menu = False
                     self.clicked = False
 
-
-        for players in self.poker.table.players:
-            players.call = False
-            players.fold = True
-
-
-            if call.collidepoint(pos):
+            if PlayerUI.new_game is not None and PlayerUI.new_game.collidepoint(self.pos):
                 if self.clicked:
-                    players.call = True
+                    self.open_number_of_players_menu = True
+                    PlayerUI.hide_all = True
+                    PlayerUI.show_winner = False
                     self.clicked = False
-            if fold.collidepoint(pos):
-                if self.clicked:
-                    self.poker.folds(players.name)
 
-            if players.call:
-                self.poker.__next__()
+        if PlayerUI.new_game is not None and self.open_number_of_players_menu:
+            number_of_players_text = self.font.render(settings.NUMBER_OF_PLAYERS, True, (255, 255, 255))
+            self.screen.blit(number_of_players_text, (370, 250))
 
+
+            PlayerUI.number_of_players_2_rect = self.screen.blit(PlayerUI.number_of_players_2, (380, 290, 80, 80))
+            PlayerUI.number_of_players_3_rect = self.screen.blit(PlayerUI.number_of_players_3, (480, 290, 80, 80))
+            PlayerUI.number_of_players_4_rect = self.screen.blit(PlayerUI.number_of_players_4, (580, 290, 80, 80))
+
+            self.open_game_menu = False
+
+        if PlayerUI.number_of_players_2_rect is not None and PlayerUI.number_of_players_2_rect.collidepoint(self.pos):
+            if self.clicked:
+                self.start_new_game(2)
+
+        if PlayerUI.number_of_players_3_rect is not None and PlayerUI.number_of_players_3_rect.collidepoint(self.pos):
+            if self.clicked:
+                self.start_new_game(3)
+
+        if PlayerUI.number_of_players_4_rect is not None and PlayerUI.number_of_players_4_rect.collidepoint(self.pos):
+            if self.clicked:
+                self.start_new_game(4)
+
+
+        for player_ui in PlayerUI.player_uis:
+            player_ui.check_current_player_status()
+        # self.check_player_statuses()  # check the status of all current players in the UI
 
         pygame.display.flip()
         pygame.event.wait()
+
+    def start_new_game(self, number_of_players):
+        self.poker.__iter__()
+        if number_of_players == 2:
+            PlayerUI.number_of_players_2_rect = None
+            self.open_number_of_players_menu = False
+            self.poker.new_game("Player 1", "Player 2")
+            self.poker.new_match()
+            self.clicked = False
+            PlayerUI.number_of_players = number_of_players
+            PlayerUI.hide_all = False
+            self.show_initial_player_ui()
+
+        elif number_of_players == 3:
+            PlayerUI.number_of_players_3_rect = None
+            self.open_number_of_players_menu = False
+            self.poker.new_game("Player 1", "Player 2", "Player 3")
+            self.poker.new_match()
+            self.clicked = False
+            PlayerUI.number_of_players = number_of_players
+            PlayerUI.hide_all = False
+            self.show_initial_player_ui()
+
+        elif number_of_players == 4:
+            PlayerUI.number_of_players_4_rect = None
+            self.open_number_of_players_menu = False
+            self.poker.new_game("Player 1", "Player 2", "Player 3", "Player 4")
+            self.poker.new_match()
+            self.clicked = False
+            PlayerUI.number_of_players = number_of_players
+            PlayerUI.hide_all = False
+            self.show_initial_player_ui()
 
     def events(self):
         for event in pygame.event.get():
@@ -209,7 +248,7 @@ class Game:
     def show_go_screen(self):
         pass
 
-
+    
 def main():
     # Create the game Instance
     g = Game()
