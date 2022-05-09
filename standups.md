@@ -203,6 +203,7 @@ Vi har bestämt oss att försöka göra klart pygame fram till 6e maj.
 * Bestämelse:
 	- Albin kommer slutföra sin presentation gällande Monte Carlo CRF och presentera den 10 maj(imorgon)
 	- Markus, Marco och Mahboubeh kommer kolla på MIT 6.0002 lection 2 & 3
+	- Mahboubeh och Markus kollar samtidigt på pygame.
 
 Pygame har blivit infesterad av buggar som kommer bli något nu fram i veckan som Albin och troligen med hjälpa av Mahboubeh 
 kommer jobba med. Men Mahboubeh samt Markus och Marco kommer nu börja forska inom Reinforcement learning och efter presentation imorgon
