@@ -43,7 +43,9 @@ EXIT_GAME = 'Exit Game'
 NEW_GAME = 'New Game'
 NUMBER_OF_PLAYERS = 'Number Of Players'
 
+
 # cards
+
 CARDWIDHT = 60
 CARDHEIGHT = 90
 ace_of_clubs = 'assets/ace of clubs.png'
