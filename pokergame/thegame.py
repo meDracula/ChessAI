@@ -33,8 +33,6 @@ class Game:
     def menu_popup(self):
         pass
 
-        # text = font.render(settings.MENU_TEXT, True, (0, 0, 255))
-
     def run(self):
         # Game loop - set self.playing = False to end the game
         self.playing = True
@@ -51,14 +49,6 @@ class Game:
     def update(self):
         # Update portion of the game loop
         pass
-        # Update portion of the game loop
-        # global community_card
-        # self.poker.new_game('a', 'b', 'c')
-        #
-        # self.hands = self.poker.new_match()
-        # for round_ in self.poker:
-        #     community_card = round_
-        # self.winner = community_card
 
     def show_initial_player_ui(self):
         x_pos_start = 200
@@ -70,16 +60,13 @@ class Game:
             player_ui.load()
             PlayerUI.player_uis.append(player_ui)
 
+    def draw(self):
 
         self.pos = pygame.mouse.get_pos()
-
-        self.poker.new_game('a', 'b', 'c', 'd')
-        players = self.poker.new_match()
 
         self.screen.fill(settings.GREEN)
         self.screen.blit(self.poker_board, (0, 0))
         self.screen.blit(self.menu_icon, (10, 10))
-
 
         for player_ui in PlayerUI.player_uis:
             player_ui.load()
@@ -113,7 +100,7 @@ class Game:
                     self.clicked = False
 
 
-            if leaderboard.collidepoint(pos):
+            if leaderboard.collidepoint(self.pos):
 
 
                 if self.clicked:
