@@ -21,17 +21,8 @@ def show_leaderboard():
         top_5_hands = (Counter(winning_hand).most_common(5))
 
         return top_5_players, top_5_hands
-
-
-
-
-
-
-
-
-
 def main():
-    #save_winner({'winner': ('Joakim', ['2s', 'js'])})
+    save_winner({'winner': ('Player_1', ['2s', 'js'])})
     #print(show_leaderboard())
     pass
 
