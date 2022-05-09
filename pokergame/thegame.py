@@ -51,14 +51,6 @@ class Game:
     def update(self):
         # Update portion of the game loop
         pass
-        # Update portion of the game loop
-        # global community_card
-        # self.poker.new_game('a', 'b', 'c')
-        #
-        # self.hands = self.poker.new_match()
-        # for round_ in self.poker:
-        #     community_card = round_
-        # self.winner = community_card
 
     def show_initial_player_ui(self):
         x_pos_start = 200
@@ -73,13 +65,9 @@ class Game:
     def draw(self):
         self.pos = pygame.mouse.get_pos()
 
-        self.poker.new_game('a', 'b', 'c', 'd')
-        players = self.poker.new_match()
-
         self.screen.fill(settings.GREEN)
         self.screen.blit(self.poker_board, (0, 0))
         self.screen.blit(self.menu_icon, (10, 10))
-
 
         for player_ui in PlayerUI.player_uis:
             player_ui.load()
@@ -112,9 +100,7 @@ class Game:
                 if self.clicked:
                     self.clicked = False
 
-
-            if leaderboard.collidepoint(pos):
-
+            if leaderboard.collidepoint(self.pos):
 
                 if self.clicked:
                     pygame.draw.rect(self.screen, (1, 127, 36), (220, 150, 600, 400), 200)
@@ -156,7 +142,6 @@ class Game:
                     self.quit()
                     self.clicked = False
 
-
             if exit_menu.collidepoint(self.pos):
                 if self.clicked:
                     self.open_game_menu = False
@@ -172,7 +157,6 @@ class Game:
         if PlayerUI.new_game is not None and self.open_number_of_players_menu:
             number_of_players_text = self.font.render(settings.NUMBER_OF_PLAYERS, True, (255, 255, 255))
             self.screen.blit(number_of_players_text, (370, 250))
-
 
             PlayerUI.number_of_players_2_rect = self.screen.blit(PlayerUI.number_of_players_2, (380, 290, 80, 80))
             PlayerUI.number_of_players_3_rect = self.screen.blit(PlayerUI.number_of_players_3, (480, 290, 80, 80))
@@ -192,13 +176,11 @@ class Game:
             if self.clicked:
                 self.start_new_game(4)
 
-
         for player_ui in PlayerUI.player_uis:
             player_ui.check_current_player_status()
         # self.check_player_statuses()  # check the status of all current players in the UI
 
         pygame.display.flip()
-        pygame.event.wait()
 
     def start_new_game(self, number_of_players):
         self.poker.__iter__()
@@ -248,7 +230,7 @@ class Game:
     def show_go_screen(self):
         pass
 
-    
+
 def main():
     # Create the game Instance
     g = Game()
