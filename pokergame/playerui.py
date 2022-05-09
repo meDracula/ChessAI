@@ -26,6 +26,7 @@ class PlayerUI:
     show_winner = False
 
     def __init__(self, player, pygame_object, initial_x_pos, initial_y_pos):
+        self.hide_player = False
         self.player = player  # orginal player object from model classes
         self.game = pygame_object
         self.cardhandler = cardhandler.CardHandler()
@@ -104,17 +105,19 @@ class PlayerUI:
             self.game.screen.blit(self.cardhandler.card_load(card), (community_card_pos_x, self.y_pos_card + 210))
 
     def load_call_ui(self):
-        call = pygame.draw.rect(self.game.screen, (0, 0, 0), (self.x_pos_call - 10, self.y_pos_call - 7, 100, 40), 2)
-        deal_text = self.game.font.render(settings.CALL_TEXT, True, (255, 255, 255))
-        self.game.screen.blit(deal_text, (self.x_pos_call, self.y_pos_call))
-        return call
+        if self.hide_player is False:
+            call = pygame.draw.rect(self.game.screen, (0, 0, 0), (self.x_pos_call - 10, self.y_pos_call - 7, 100, 40), 2)
+            deal_text = self.game.font.render(settings.CALL_TEXT, True, (255, 255, 255))
+            self.game.screen.blit(deal_text, (self.x_pos_call, self.y_pos_call))
+            return call
 
     def load_fold_ui(self):
-        x_pos_fold = self.x_pos_call + self.x_offset_call
-        fold = pygame.draw.rect(self.game.screen, (0, 0, 0), (x_pos_fold - 10, self.y_pos_call - 7, 100, 40), 2)
-        fold_text = self.game.font.render(settings.FOLD_TEXT, True, (255, 255, 255))
-        self.game.screen.blit(fold_text, (x_pos_fold, self.y_pos_call))
-        return fold
+        if self.hide_player is False:
+            x_pos_fold = self.x_pos_call + self.x_offset_call
+            fold = pygame.draw.rect(self.game.screen, (0, 0, 0), (x_pos_fold - 10, self.y_pos_call - 7, 100, 40), 2)
+            fold_text = self.game.font.render(settings.FOLD_TEXT, True, (255, 255, 255))
+            self.game.screen.blit(fold_text, (x_pos_fold, self.y_pos_call))
+            return fold
 
     def load_player_place_ui(self):
         x_pos_player = self.x_pos_player
@@ -138,11 +141,14 @@ class PlayerUI:
                 if len(self.game.poker.table.players) < 2:
                     PlayerUI.show_winner = True
                 self.game.clicked = False
+                self.hide_player = True
 
         if self.player.call:
             if not PlayerUI.show_winner:
                 try:
                     self.game.poker.__next__()
+                    if self.game.poker.rounds == 3:
+                        self.game.poker.__next__()
                 except StopIteration:
                     print(f"{self.game.poker.winner().name}")
                     PlayerUI.show_winner = True
