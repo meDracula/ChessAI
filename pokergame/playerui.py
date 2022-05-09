@@ -149,11 +149,5 @@ class PlayerUI:
         x_pos_winner = 350
         y_pos_winner = 10
 
-        winner_place_text = self.game.font.render(f"Winner    Is   {self.game.poker.winner().name}", True, (0, 0, 0))
+        winner_place_text = self.game.font.render(f"Winner   Is   {self.game.poker.winner().name}", True, (0, 0, 0))
         self.game.screen.blit(winner_place_text, (x_pos_winner, y_pos_winner))
-
-        while pygame.time.get_ticks() < 10000:
-            self.game.screen.blit(winner_place_text, (x_pos_winner, y_pos_winner))
-
-            pygame.display.flip()
-            pygame.time.wait(2)
