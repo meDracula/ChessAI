@@ -218,7 +218,15 @@ Det utfördes även sprint review 3 som var gällande Pygame och markerade Albin
 Monte Carlo CRF.
 
 # Standup 17
-**Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
+**Närvarande**: Albin Thorsson, Mahboubeh Azizzadeh<br>
 **Datum**: 2022-05-10<br>
 
-Kommer komma...
+* Bestämelse:
+	- Markus, Mahboubeh och Marco kommer studerar grunderna i Reinforcement Learning
+	- Albin fortsätter med en juptyer notebook om Monte Carlo CFR 
+
+# Standup 18
+**Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
+**Datum**: 2022-05-11<br>
+
+Kommer kommar ...
