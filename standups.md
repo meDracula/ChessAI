@@ -229,4 +229,24 @@ Monte Carlo CRF.
 **Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh och Marco Vrban<br>
 **Datum**: 2022-05-11<br>
 
-Kommer kommar ...
+* Bestämelse:
+	- Utforska om Monte Carlo Simulation är möjlig algorithm för poker ai
+
+Albin har presentar Monte Carlo CFR och det har vissat sig att implenetation av denna algorithm
+är inte så enkelt som hoppas. Detta betyder att hoppet är att hitta en annan algorithm.
+Mahboubeh förslog Monte Carlo Simulation. Och planen är att se om det är möjligt att använda
+denna algorithm för poker ai.
+
+# Standup 19
+**Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
+**Datum**: 2022-05-12<br>
+
+* Bestämelse:
+	- Markus och Marco börja läsa på om Monte Carlo CFR(MCCFR)
+	- Albin börja skriva om pygame och poker för att implementar poker bets och göra den redo för MCCFR
+	- [ ] Prata med Joakim imorgon om förslag om alternativ till algorithmer och hur han förslår vi ska gå tillväga
+
+Mahboubeh Azizzadeh har bestämt sig för att lämna gruppen.
+Idag har planningar om hur resten av medlemmarna ska ta sig till mål med att utveckla poker ai.
+Det är för närvarande planen att använda MCCFR men vi kommer kolla med Joakim om andra alternativ finns.
+Anledning är för MCCFR är en mer komplicerad algorithm att använda än hade hoppas på.
