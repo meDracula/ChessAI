@@ -250,3 +250,22 @@ Mahboubeh Azizzadeh har bestämt sig för att lämna gruppen.
 Idag har planningar om hur resten av medlemmarna ska ta sig till mål med att utveckla poker ai.
 Det är för närvarande planen att använda MCCFR men vi kommer kolla med Joakim om andra alternativ finns.
 Anledning är för MCCFR är en mer komplicerad algorithm att använda än hade hoppas på.
+
+# Standup 20
+**Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
+**Datum**: 2022-05-13<br>
+
+* Bestämelse:
+	- [X] Prata med Joakim
+	- Albin fortsätter på pygame
+	- Markus och Marco börja forska inom Feedforward Neural Network
+
+Efter prata med Joakim kom vi fram till att en algorithm som Feedforward NN kanske är möjlig att använda och specillet lättare att
+implementar än MCCFR. Det finns dock saker kvar att göra i pygame vilket är varför Albin börja ta tag det medans
+Markus och Marco läser på om Feedforward Neural Network och hur man kan göra en poker bot utav denna algorithm.
+
+# Standup 21
+**Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
+**Datum**: 2022-05-16<br>
+
+Kommer komma...
