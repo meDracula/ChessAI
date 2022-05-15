@@ -24,6 +24,11 @@ TITLE = "POKER"
 BGCOLOR = DARKGREY
 STARTING_TEAM = 'orange'  # orange or blue
 
+# Players
+DEFUALT_AMOUNT_PLAYERS = 2 # Maxium amount of players is 4
+DEFUALT_PLAYER_NAMES = "Batman", "Joker", "Harley", "Bane"
+DEFUALT_BOT = "CALL"
+
 # images
 BOARD = 'assets/poker_board.png'
 MENU = 'assets/menu-icon.png'

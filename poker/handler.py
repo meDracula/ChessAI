@@ -63,34 +63,27 @@ class Poker:
 
     def __iter__(self):
         self.rounds = 0
-        self.match_winner = False
         return self
 
     def __next__(self):
         self.rounds += 1
-
-        if len(self.table.players) > 1 and not self.match_winner:
+        if len(self.table.players) > 1:
             return self.next_round(self.rounds)
-        elif self.match_winner:
-            raise StopIteration()
         else:
-            self.match_winner = True
-            return self.winner()
+            raise StopIteration()
 
     def next_round(self, rounds):
         match rounds:
             case 1:
                 self.table.flop()
-                return {'community cards': str(self.table)}
+                return {'community cards': self.table.community_cards}
             case 2:
                 self.table.turn()
-                return {'community cards': str(self.table)}
+                return {'community cards': self.table.community_cards}
             case 3:
                 self.table.river()
-                return {'community cards': str(self.table)}
-            case 4:
-                self.match_winner = True
-                return self.winner()
+                return {'community cards': self.table.community_cards}
+        raise StopIteration()
 
     def winner(self):
         """This function evaluates the winner of current playing players in a match, returns the winning player.
@@ -101,4 +94,4 @@ class Poker:
             player = self.table.players[0]
         else:
             player = winner_is(self.table)
-        return player
+        return {f'winner': (player.name, player.hand)}

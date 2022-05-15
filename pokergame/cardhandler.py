@@ -55,9 +55,22 @@ class CardHandler:
                       '2c': settings.two_of_clubs,
                       '2s': settings.two_of_spades,
                       '2h': settings.two_of_hearts,
-                      '2d': settings.two_of_diamonds}
+                      '2d': settings.two_of_diamonds
+                    }
+        self.loaded_cards = {}
 
     def card_load(self, card):
-
         image = pygame.image.load(self.cards[card])
-        return pygame.transform.scale(image, (settings.CARDWIDHT, settings.CARDHEIGHT))
+        pycard = pygame.transform.scale(image, (settings.CARDWIDHT, settings.CARDHEIGHT))
+        self.loaded_cards[card] = pycard
+        return pycard
+
+    def draw_community_cards(self, game, community_cards, offset_x=70):
+        community_card_pos_x = 250
+        community_card_pos_y = 330
+        for card in community_cards['community cards']:
+            community_card_pos_x += offset_x
+            game.screen.blit(self.loaded_cards.get(card, self.card_load(card)), (community_card_pos_x, community_card_pos_y))
+
+    def draw_player_cards(self, game, card, pos):
+        game.screen.blit(self.loaded_cards.get(card, self.card_load(card)), pos)
