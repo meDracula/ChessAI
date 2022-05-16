@@ -69,3 +69,4 @@ under sprint 5 sprint skall vi försöka implementera en början utav feed forwa
 
 Vi tyckte att vi lyckades väldigt bra med förra sprinten, men kan bli lite bättre på kommunikation.
 
+Sprint 45 kommer pågå fram till 2022-05-23.
