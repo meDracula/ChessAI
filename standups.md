@@ -268,4 +268,13 @@ Markus och Marco läser på om Feedforward Neural Network och hur man kan göra 
 **Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
 **Datum**: 2022-05-16<br>
 
+* Bestämelse:
+	- Albin ska införa en middleman i pygame
+	- Markus och marco försöker börja föra in lite feed forward kod.
+
+
+# Standup 22
+**Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
+**Datum**: 2022-05-17<br>
+
 Kommer komma...
