@@ -58,7 +58,14 @@ Samt med utveckling kommer även förberedelser för göras och kanske påbörja
 Sprinten 4 kommer pågå fram till 2022-05-16.
 
 # Sprint Review 4
-**Närvarande**: Albin Thorsson, Markus Antonsen, Mahboubeh Azizzadeh, Marco Vrban<br>
+**Närvarande**: Albin Thorsson, Markus Antonsen, Marco Vrban<br>
 **Datum**: 2022-05-09 2022-05-16<br>
 
-kommer komma...
+Vi lyckades bli klara med pygame under sprint 4, vilket vi hade som mål med sprinten.
+
+Det andra målet med sprinten var att albin skulle presentera Monto Carlo CRF. Vilket han gjorde, men vi valde ändå att jobba med någon annat alghoritm.
+
+under sprint 5 sprint skall vi försöka implementera en början utav feed forward neural network. Albin ska försöka föra in en "middleman" i pygame.
+
+Vi tyckte att vi lyckades väldigt bra med förra sprinten, men kan bli lite bättre på kommunikation.
+
