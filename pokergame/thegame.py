@@ -6,16 +6,18 @@ from poker import Poker
 from player import PlayerHandler
 from cardhandler import CardHandler
 from leaderboard import show_leaderboard, save_winner
+from middleman import MiddleMan
 
 
 class Game:
-    def __init__(self):
+    def __init__(self, bot: bool):
         pygame.init()
         self.screen = pygame.display.set_mode((settings.WIDTH, settings.HEIGHT))
         pygame.display.set_caption(settings.TITLE)
         self.clock = pygame.time.Clock()
 
         # Load Data
+        self.bot = bot
         self.load_data()
 
         # Poker package
@@ -31,12 +33,22 @@ class Game:
         self.top_5 = show_leaderboard()
 
     def new(self):
-        self.poker.new_game(*settings.DEFUALT_PLAYER_NAMES[:self.number_of_players])
+        names = list(settings.DEFUALT_PLAYER_NAMES)
+        if self.bot:
+            self.middleman = MiddleMan(settings.DEFUALT_BOT)
+            names[self.number_of_players-1] = settings.DEFUALT_BOT
+
+        self.poker.new_game(*names[:self.number_of_players])
         self.cardhandler = CardHandler()
         self.new_match()
 
     def new_match(self):
         players = self.poker.new_match()
+
+        # Middle man recive the hand
+        if self.bot:
+            self.middleman.get_hand(players[f'{self.middleman.name}'])
+
         self.playerhandler = PlayerHandler(players, self.cardhandler)
         self.round = iter(self.poker)
 
@@ -85,12 +97,23 @@ class Game:
                 if self.playerhandler.fold is not None and self.playerhandler.fold.collidepoint(pos):
                     self.playerhandler.next_player("fold")
 
+        if self.bot and self.playerhandler.current_player == self.middleman.name:
+            action = self.middleman.action()
+            self.playerhandler.next_player(action)
+            # Extra: Multiprocessing with Queue or async code
+            # action = awaiting response, async code i.e continue and check if response is reviced
+                # if action reviced -> self.playerhandler.next_player(action)
+
     def update(self):
         if self.playerhandler.next_round and not self.menu.open_winner_menu:
             try:
                 if len(self.playerhandler.folds) > 0:
                     self.poker.folds(*self.playerhandler.folds)
                 self.community_cards = next(self.round)
+
+                # Middle man revices/update new community_cards
+                if self.bot:
+                    self.middleman.update_enviroment(self.community_cards, self.playerhandler.folds)
 
                 self.playerhandler.next_round = False
                 self.playerhandler.folds = []
@@ -137,10 +160,19 @@ class Game:
     def show_end_screen(self):
         pass
 
+def prompt_bot():
+    ans = ""
+    while True:
+        ans = input("BOT? (y/n) > ")
+        if ans == "y" or ans == "n":
+            break
+    return True if ans == "y" else False
+
 
 def main():
+    bot = prompt_bot()
     # Create the game Instance
-    g = Game()
+    g = Game(bot)
     g.show_start_screen()
     while True:
         g.new()
