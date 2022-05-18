@@ -1,6 +1,3 @@
-from poker.deck import Deck, Template_Deck
-
-
 class Player:
     def __init__(self, name=None):
         self.name = name
