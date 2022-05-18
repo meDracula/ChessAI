@@ -11,7 +11,7 @@ class Poker:
             The function will setup a table with all of the new players entered.
 
             :param names: Multiple arguments of str of names.
-            :type names: tuple
+            :type names: *args
             :type name: str
         """
         self.table = Table({name:Player(name) for name in names})
@@ -63,39 +63,35 @@ class Poker:
 
     def __iter__(self):
         self.rounds = 0
-        self.match_winner = False
         return self
 
     def __next__(self):
         self.rounds += 1
-
-        if len(self.table.players) > 1 and not self.match_winner:
+        if len(self.table.players) > 1:
             return self.next_round(self.rounds)
-        elif self.match_winner:
-            raise StopIteration()
         else:
-            self.match_winner = True
-            return self.winner()
+            raise StopIteration()
 
     def next_round(self, rounds):
         match rounds:
             case 1:
                 self.table.flop()
-                return {'community cards': str(self.table)}
+                return {'community cards': self.table.community_cards}
             case 2:
                 self.table.turn()
-                return {'community cards': str(self.table)}
+                return {'community cards': self.table.community_cards}
             case 3:
                 self.table.river()
-                return {'community cards': str(self.table)}
-            case 4:
-                self.match_winner = True
-                return self.winner()
+                return {'community cards': self.table.community_cards}
+        raise StopIteration()
 
     def winner(self):
         """This function evaluates the winner of current playing players in a match, returns the winning player.
 
             :return: {'winner': (name, hand)} A dictionary with key winner and value tuple player name and hand
         """
-        player = winner_is(self.table)
-        return {'winner': (player.name, player.hand)}
+        if len(self.table.players) == 1:
+            player = self.table.players[0]
+        else:
+            player = winner_is(self.table)
+        return {f'winner': (player.name, player.hand)}
