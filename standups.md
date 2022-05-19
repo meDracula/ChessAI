@@ -278,11 +278,21 @@ Markus och Marco läser på om Feedforward Neural Network och hur man kan göra 
 **Datum**: 2022-05-17<br>
 
 * Bestämelse:
-	- Alla ska sätta sig in lite mer i neural network.
+	- Alla ska sätta sig in lite mer i feed forward neural network.
 	
 
 # Standup 22
 **Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
 **Datum**: 2022-05-18<br>
 
-Kommer komma...
+* Bestämelse:
+	- Alla ska sätta sig in lite mer i feed forward neural network.
+
+
+# Standup 22
+**Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
+**Datum**: 2022-05-19<br>
+
+* Bestämelse:
+	- Idag ska vi fokusera på att lära oss hur koden till neural networks ser ut. Så vi kan börja skriva själva koden imorgon.
+
