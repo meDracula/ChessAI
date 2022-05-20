@@ -298,7 +298,7 @@ Markus och Marco läser på om Feedforward Neural Network och hur man kan göra 
 
 # Standup 22
 **Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
-**Datum**: 2022-05-2<br>
+**Datum**: 2022-05-20<br>
 
 * Bestämelse:
 	- Vi ska se färdigt på videoserien och sedan implementera koden, nästa vecka eller till helgen.
