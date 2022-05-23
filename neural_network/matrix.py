@@ -18,8 +18,6 @@ class Matrix:
                 j += 1
                 self.data[i][j] = 0
 
-
-
     def randomize(self):
         i = 0
         j= 0
@@ -85,5 +83,3 @@ class Matrix:
                 j += 1
                 val = self.data[i][j]
                 self.data[i][j] = func(val)
-
-
