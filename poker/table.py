@@ -31,5 +31,10 @@ class Table:
         for name in names:
             del self.player_table[name]
 
+    def clear(self):
+        self.players.clear()
+        self.community_cards.clear()
+        self.dealer.reset_deck()
+
     def __repr__(self):
         return f"{self.community_cards}"

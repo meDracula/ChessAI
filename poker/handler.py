@@ -1,6 +1,6 @@
 from poker.table import Table
 from poker.player import Player
-from poker.winner import winner_is
+from poker.winner import winner_is, hand_summary
 
 
 class Poker:
@@ -31,7 +31,7 @@ class Poker:
 
             :return: A dictonary { player name: hand }, key player name, value player hand
         """
-        self.table.players.clear()
+        self.table.clear()
 
         if len(player_add) > 0:
             for name in player_add:
@@ -93,5 +93,31 @@ class Poker:
         if len(self.table.players) == 1:
             player = self.table.players[0]
         else:
-            player = winner_is(self.table)
+            player = winner_is(self.table.players, self.table.community_cards)
         return {f'winner': (player.name, player.hand)}
+
+    def exepected_outcome(self, player: str):
+        """Exepcted outcome for a player to playout.
+            This function evalutes how the game can play out and recommeded course of action for player.
+
+            :param player: A players name for the function to create the exepcted outcome for.
+            :type player: str
+
+            :return: tuple of exepected choice [ call, fold ]
+        """
+        # All players call outcome
+        community_cards = self.table.dealer.deck[:5]
+        winning_player = winner_is(self.table.players, community_cards)
+        if winning_player.name == player:
+            return [1, 0], [1, 0], [1, 0], [1, 0]
+        # Calculating when to fold
+        else:
+            deviation_fold = 0.2
+            player_obj = next(play for play in self.table.players if play.name == player)
+            percentage_dist = hand_summary(player_obj, community_cards)
+            if percentage_dist[1] < 0.1 and percentage_dist[0] + deviation_fold > percentage_dist[1]:
+                return [1, 0], [0, 1], [0, 1], [0, 1] # Fold on flop
+            elif percentage_dist[2] < 0.80:
+                return  [1, 0], [1, 0], [0, 1], [0, 1] # Fold on river
+            else:
+                return [1, 0], [1, 0], [1, 0], [1, 0] # Don't fold to good of a hand
