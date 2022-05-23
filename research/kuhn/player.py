@@ -1,5 +1,5 @@
 class Player:
-    def __init__(self, name=None):
+    def __init__(self, name):
         self.name = name
         self.cards = []
 
@@ -14,4 +14,3 @@ class Player:
     @hand.deleter
     def hand(self):
         self.cards = []
-
