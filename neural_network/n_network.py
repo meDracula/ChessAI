@@ -25,7 +25,7 @@ class NeuralNetwork(nn.Module):
         second = F.relu(self.second_hidden(first))
         third = F.relu(self.third_hidden(second))
         output = self.output(third)
-        return F.softmax(output, dim=1)
+        return F.softmax(output, dim=0)
 
 
 
