@@ -302,3 +302,21 @@ Markus och Marco läser på om Feedforward Neural Network och hur man kan göra 
 
 * Bestämelse:
 	- Vi ska se färdigt på videoserien och sedan implementera koden, nästa vecka eller till helgen.
+
+# Standup 23
+**Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
+**Datum**: 2022-05-23<br>
+
+* Bestämelse:
+	- Marco har påbörjat att göra training för poker AI.
+	- Markus har påbörjat NN.
+	- Albin har pådbörjat med reward funktion.
+
+# Standup 24
+**Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
+**Datum**: 2022-05-24<br>
+
+* Bestämelse:
+	- Marco forsätter och försöker att göra klart training för poker AI.
+	- Markus joinar Marco med Training för poker AI.
+	- Albin utvecklar sin expected_outcome function.
