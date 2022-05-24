@@ -70,3 +70,14 @@ under sprint 5 sprint skall vi försöka implementera en början utav feed forwa
 Vi tyckte att vi lyckades väldigt bra med förra sprinten, men kan bli lite bättre på kommunikation.
 
 Sprint 45 kommer pågå fram till 2022-05-23.
+
+# Sprint Review 5
+**Närvarande**: Albin Thorsson, Markus Antonsen, Marco Vrban<br>
+**Datum**: 2022-05-16 2022-05-23<br>
+
+Vi lyckades påbörja med feedforward, vi vill bli klara med feedforward under sprint 6
+
+Vi tyckte att vi lyckades väldigt bra med förra sprinten, men kan bli lite bättre på kommunikation.
+Vi kan bli bättre på att tidsbedömma för våra issues.
+
+Sprint 6 kommer pågå fram till 2022-05-30.
