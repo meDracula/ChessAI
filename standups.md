@@ -317,6 +317,6 @@ Markus och Marco läser på om Feedforward Neural Network och hur man kan göra 
 **Datum**: 2022-05-24<br>
 
 * Bestämelse:
-	- Marco forsätter och försöker att göra klart training för poker AI.
+	- Marco fortsätter och försöker att göra klart training för poker AI.
 	- Markus joinar Marco med Training för poker AI.
 	- Albin utvecklar sin expected_outcome function.
