@@ -320,3 +320,12 @@ Markus och Marco läser på om Feedforward Neural Network och hur man kan göra 
 	- Marco fortsätter och försöker att göra klart training för poker AI.
 	- Markus joinar Marco med Training för poker AI.
 	- Albin utvecklar sin expected_outcome function.
+
+# Standup 25
+**Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
+**Datum**: 2022-05-25<br>
+
+* Bestämelse:
+	- Marco fortsätter och försöker att göra klart training för poker AI.
+	- Markus joinar Marco med Training för poker AI.
+	- Albin gjorde klart sin function och hoppar på training med Marco och Markus.
