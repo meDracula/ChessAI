@@ -1,5 +1,5 @@
 import pygame
-import settings
+from pokergame import settings
 
 
 class Menu:

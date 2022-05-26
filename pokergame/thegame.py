@@ -1,12 +1,12 @@
 import sys
 import pygame
-import settings
-from menu import Menu
+from pokergame import settings
+from pokergame.menu import Menu
 from poker import Poker
-from player import PlayerHandler
-from cardhandler import CardHandler
-from leaderboard import show_leaderboard, save_winner
-from middleman import MiddleMan
+from pokergame.player import PlayerHandler
+from pokergame.cardhandler import CardHandler
+from pokergame.leaderboard import show_leaderboard, save_winner
+from pokergame.middleman import MiddleMan
 
 
 class Game:
@@ -108,6 +108,7 @@ class Game:
         if self.playerhandler.next_round and not self.menu.open_winner_menu:
             try:
                 if len(self.playerhandler.folds) > 0:
+                    print(self.playerhandler.folds)
                     self.poker.folds(*self.playerhandler.folds)
                 self.community_cards = next(self.round)
 

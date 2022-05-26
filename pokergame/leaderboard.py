@@ -1,8 +1,9 @@
 import json
 from collections import Counter
+from pokergame import settings
 
 def save_winner(winner):
-    with open('leaderboard_save.data', 'a', encoding='utf-8') as leaderboard:
+    with open(settings.LEADERBOARD_SAVE, 'a', encoding='utf-8') as leaderboard:
         leaderboard.write(json.dumps(winner))
         leaderboard.write('\n')
 
@@ -11,7 +12,7 @@ def show_leaderboard():
     winning_player = []
     winning_hand = []
 
-    with open('leaderboard_save.data', 'r', encoding='utf-8') as leaderboard_r:
+    with open(settings.LEADERBOARD_SAVE, 'r', encoding='utf-8') as leaderboard_r:
         for lines in leaderboard_r:
             res = json.loads(lines)
             winning_player.append(res['winner'][0])

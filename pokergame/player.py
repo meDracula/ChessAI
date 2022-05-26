@@ -1,5 +1,5 @@
-import settings
 import pygame
+from pokergame import settings
 
 
 class PlayerHandler:

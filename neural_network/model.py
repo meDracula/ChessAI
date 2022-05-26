@@ -1,4 +1,5 @@
 from os import path
+from neural_network.card_compute import card_compute
 from neural_network.n_network import NeuralNetwork
 import torch
 
@@ -16,3 +17,51 @@ class PokerAI:
         model.load_state_dict(torch.load(file_path))
         model.eval()
         return PokerAI(model)
+
+    # Pygame
+    def get_hand(self, hand):
+        # Preflop
+        self.computed_hand = [card_compute(hand[0]), card_compute(hand[1])]
+        self.X = torch.tensor([self.computed_hand[0], self.computed_hand[1],
+                          0, 0, 0, 0, 0, 1, 0, 0, 0], dtype=torch.float)
+
+    def observation(self, community_cards, players_fold):
+        community_cards = community_cards['community cards']
+        # Flop
+        if len(community_cards) == 3:
+            self.X = torch.tensor([self.computed_hand[0], self.computed_hand[1],
+                                    card_compute(community_cards[0]),
+                                    card_compute(community_cards[1]),
+                                    card_compute(community_cards[2]),
+                                    0, 0, 0, 1, 0, 0], dtype=torch.float)
+        # Turn
+        elif len(community_cards) == 4:
+            self.X = torch.tensor([self.computed_hand[0], self.computed_hand[1],
+                                  card_compute(community_cards[0]),
+                                  card_compute(community_cards[1]),
+                                  card_compute(community_cards[2]),
+                                  card_compute(community_cards[3]),
+                                  0, 0, 0, 1, 0], dtype=torch.float)
+        # River
+        else:
+            self.X = torch.tensor([self.computed_hand[0], self.computed_hand[1],
+                                  card_compute(community_cards[0]),
+                                  card_compute(community_cards[1]),
+                                  card_compute(community_cards[2]),
+                                  card_compute(community_cards[3]),
+                                  card_compute(community_cards[4]),
+                                  0, 0, 0, 1], dtype=torch.float)
+
+    def clear_outcome_action(self, output):
+        print(output, end=" ")
+        _, index = torch.max(torch.abs(output), dim=0)
+        return "call" if index == 0 else "fold"
+
+    def action(self):
+        action = self.clear_outcome_action(self.model(self.X))
+        print(action, end="\n")
+        return action
+
+    def clear(self):
+        self.X = None
+        self.computed_hand = None
