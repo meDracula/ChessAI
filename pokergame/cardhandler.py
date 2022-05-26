@@ -1,4 +1,4 @@
-import settings
+from pokergame import settings
 import pygame
 
 

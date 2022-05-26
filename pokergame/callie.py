@@ -7,7 +7,7 @@ class Callie:
     def get_hand(self, hand):
         self.hand = hand
 
-    def obeservation(self, community_cards, players_fold):
+    def observation(self, community_cards, players_fold):
         self.community_cards = community_cards
         self.players_fold = players_fold
 
