@@ -329,3 +329,13 @@ Markus och Marco läser på om Feedforward Neural Network och hur man kan göra 
 	- Marco fortsätter och försöker att göra klart training för poker AI.
 	- Markus joinar Marco med Training för poker AI.
 	- Albin gjorde klart sin function och hoppar på training med Marco och Markus.
+
+# Standup 26 
+**Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
+**Datum**: 2022-05-26<br>
+
+* Bestämelse:
+	- Alla jobbar med training för poker AI, vi vill ladda upp boten idag, reward penalty, kolla hur lång tid epoch tar.
+	- Marco kör reward/penalty
+	- Albin kör load AI
+	- Markus kollar hur lång tid det tar med epoch och hur man sparar modelen i git
