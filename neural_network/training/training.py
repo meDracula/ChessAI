@@ -1,4 +1,5 @@
 import os
+import time
 
 import torch
 
@@ -11,9 +12,9 @@ import torch.nn.functional as F
 net = NeuralNetwork(11, 64)
 omptimizer = optim.Adam(net.parameters(), lr=0.001)
 
-EPOCHS = 3
+EPOCHS = 1000
 poker = Poker()
-
+start = time.time()
 def clear_output(output):
     _, index = torch.max(torch.abs(output), dim=0)
     return [1, 0] if index == 1 else [0, 1]
@@ -87,5 +88,8 @@ for epoch in range(EPOCHS):
         loss.backward()
     omptimizer.step()
 
-path = 'c:\\test\\dummy.ph'
+path = 'C:\\Code\\ChessAI\\neural_network\\training\\dummy.ph'
 torch.save(net.state_dict(), path)
+end = time.time()
+
+print("--- %s seconds ---" % (time.time() - start))
