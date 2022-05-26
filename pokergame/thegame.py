@@ -134,6 +134,13 @@ class Game:
         if not self.playerhandler.preflop:
             self.cardhandler.draw_community_cards(self, self.community_cards)
 
+        # Draw action
+        if self.playerhandler.previous_act is not None and not self.menu.open_winner_menu:
+            line = f"{self.playerhandler.previous_act[0]}   {self.playerhandler.previous_act[1]}"
+            action_place_text = self.font.render(line, True, (0, 0, 0))
+            self.screen.blit(action_place_text, (350, 10))
+
+
         # Show Menu
         if self.menu.open_game_menu:
             self.menu.game_menu()

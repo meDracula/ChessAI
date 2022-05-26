@@ -1,13 +1,11 @@
 import os
 import time
-
 import torch
-
+import torch.optim as optim
+import torch.nn.functional as F
 from neural_network.card_compute import card_compute
 from poker import Poker
 from neural_network.n_network import NeuralNetwork
-import torch.optim as optim
-import torch.nn.functional as F
 
 net = NeuralNetwork(11, 64)
 omptimizer = optim.Adam(net.parameters(), lr=0.001)
@@ -17,7 +15,7 @@ poker = Poker()
 start = time.time()
 def clear_output(output):
     _, index = torch.max(torch.abs(output), dim=0)
-    return [1, 0] if index == 1 else [0, 1]
+    return [1, 0] if index == 0 else [0, 1]
 
 poker.new_game('human', 'bot')
 for epoch in range(EPOCHS):
@@ -89,7 +87,8 @@ for epoch in range(EPOCHS):
     omptimizer.step()
 
 path = 'C:\\Code\\ChessAI\\neural_network\\training\\dummy.ph'
+#path = "/home/hyde/Documents/PokerAI/neural_network/training/dummy.ph"
 torch.save(net.state_dict(), path)
 end = time.time()
 
-print("--- %s seconds ---" % (time.time() - start))
+print("--- %s seconds ---" % (end - start))

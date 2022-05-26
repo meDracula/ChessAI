@@ -4,7 +4,7 @@ from neural_network.n_network import NeuralNetwork
 import torch
 
 class PokerAI:
-    dir_path = "/training/data/"
+    dir_path = "/training/"
 
     def __init__(self, model):
         self.model = model
@@ -59,7 +59,7 @@ class PokerAI:
 
     def action(self):
         action = self.clear_outcome_action(self.model(self.X))
-        print(action, end="\n")
+        print("-> ", action, end="\n")
         return action
 
     def clear(self):

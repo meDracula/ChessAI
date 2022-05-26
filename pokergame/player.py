@@ -13,6 +13,7 @@ class PlayerHandler:
         self.player_round = {player: "wait" for player in players} # Acceptable values: wait, call or fold
         self.player_next = iter(self.player_round)
         self.current_player = next(self.player_next)
+        self.previous_act = None
         self.next_round = False
         self.preflop = True
 
@@ -70,6 +71,8 @@ class PlayerHandler:
 
     def next_player(self, action):
         self.player_round[self.current_player] = action
+        self.previous_act = (self.current_player, action)
+
         if not all(act != "wait" for act in self.player_round.values()):
             self.current_player = next(self.player_next)
         else:
