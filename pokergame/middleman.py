@@ -1,5 +1,5 @@
 from pokergame.callie import Callie
-from neural_network.model import PokerAI
+from pokerai.model import PokerAI
 
 class MiddleMan:
     def __init__(self, name):
