@@ -339,3 +339,14 @@ Markus och Marco läser på om Feedforward Neural Network och hur man kan göra 
 	- Marco kör reward/penalty
 	- Albin kör load AI
 	- Markus kollar hur lång tid det tar med epoch och hur man sparar modelen i git
+
+# Standup 27 
+**Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
+**Datum**: 2022-05-27<br>
+
+* Bestämelse:
+	- Alla jobbar med training för poker AI, vi vill ladda upp boten idag, reward penalty, kolla hur lång tid epoch tar.
+	- Marco kör reward/penalty/ kollar lite på x värdet och neruons
+	- Albin kollar på en video om loss functions
+	- Markus kör reward/penalty/ kollar lite på x värdet och neruons
+
