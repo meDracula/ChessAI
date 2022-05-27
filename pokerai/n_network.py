@@ -6,8 +6,6 @@ import torch.nn.functional as F
 class NeuralNetwork(nn.Module):
     def __init__(self, n_inputs, n_neurons):
         super().__init__()
-        # self.weights = 0.10 * np.random.randn(n_inputs, n_neurons)
-        # self.biases = np.zeros((1, n_neurons))
 
         self.input = nn.Linear(n_inputs, n_neurons)
 
@@ -21,7 +19,6 @@ class NeuralNetwork(nn.Module):
 
 
     def forward(self, inputs):
-        # self.output = np.dot(inputs, self.weights) + self.biases
         input_value = F.relu(self.input(inputs))
         z = F.relu(self.FC1(input_value))
         z = F.relu(self.FC2(z))

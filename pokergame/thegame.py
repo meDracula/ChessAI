@@ -53,6 +53,7 @@ class Game:
 
         self.playerhandler = PlayerHandler(players, self.cardhandler)
         self.round = iter(self.poker)
+        self.community_cards = []
 
     def run(self):
         # Game loop - set self.playing = False enter show_end_screen
@@ -129,7 +130,7 @@ class Game:
         self.playerhandler.draw_players(self)
 
         # Community cards
-        if not self.playerhandler.preflop:
+        if not self.playerhandler.preflop and len(self.community_cards) > 0:
             self.cardhandler.draw_community_cards(self, self.community_cards)
 
         # Draw action

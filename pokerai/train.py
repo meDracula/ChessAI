@@ -11,7 +11,7 @@ from pokerai.n_network import NeuralNetwork
 net = NeuralNetwork(7, 64)
 optimizer = optim.Adam(net.parameters(), lr=0.001)
 
-EPOCHS = 100
+EPOCHS = 150
 poker = Poker()
 start = time.time()
 
@@ -32,7 +32,7 @@ for epoch in range(EPOCHS):
 
     expt_outcome = poker.exepected_outcome('bot')
     y = torch.tensor(expt_outcome, dtype=torch.float)
-    #y = y.type(torch.LongTensor)
+    y = y.type(torch.LongTensor)
     print(f'Expected outcome: {expt_outcome}')
     outcome = net(X)
     outcome_all.append(outcome)
@@ -85,7 +85,7 @@ for epoch in range(EPOCHS):
     optimizer.step()
 
 #path = 'C:\\Code\\ChessAI\\neural_network\\training\\dummy.ph'
-path = "/home/hyde/Documents/PokerAI/neural_network/data/dummy.ph"
+path = "/home/hyde/Documents/PokerAI/pokerai/data/dummy.ph"
 torch.save(net.state_dict(), path)
 end = time.time()
 
