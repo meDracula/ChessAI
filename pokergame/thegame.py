@@ -43,6 +43,7 @@ class Game:
         self.new_match()
 
     def new_match(self):
+        print("="*5, "New Match", "="*5)
         players = self.poker.new_match()
 
         # Middle man recive the hand
@@ -51,6 +52,7 @@ class Game:
 
         self.playerhandler = PlayerHandler(players, self.cardhandler)
         self.round = iter(self.poker)
+        print(f"Expected outcome {self.poker.exepected_outcome(self.middleman.name)}")
 
     def run(self):
         # Game loop - set self.playing = False enter show_end_screen

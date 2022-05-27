@@ -122,7 +122,7 @@ class Poker:
         percentage_dist = hand_summary(player_obj, community_cards)
         if percentage_dist[1] < 0.1 and percentage_dist[0] + deviation_fold > percentage_dist[1]:
             return [1, 0], [0, 1], [0, 1], [0, 1] # Fold on flop
-        elif percentage_dist[2] < 0.80:
+        elif percentage_dist[2] < 0.70:
             return  [1, 0], [1, 0], [0, 1], [0, 1] # Fold on river
         else:
             return [1, 0], [1, 0], [1, 0], [1, 0] # Don't fold to good of a hand
