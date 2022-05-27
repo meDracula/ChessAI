@@ -30,7 +30,7 @@ DEFUALT_PLAYER_NAMES = "Batman", "Joker", "Harley", "Bane"
 DEFUALT_BOT = "POKERAI"
 
 # Home dir
-DIR = ""
+DIR = "pokergame"
 
 # leaderboard file
 LEADERBOARD_SAVE = DIR + "leaderboard_save.data"
