@@ -1,6 +1,6 @@
 from os import path
-from neural_network.card_compute import card_compute
-from neural_network.n_network import NeuralNetwork
+from pokerai.card_compute import card_compute
+from pokerai.n_network import NeuralNetwork
 import torch
 
 class PokerAI:

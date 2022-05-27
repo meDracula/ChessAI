@@ -43,16 +43,16 @@ class Game:
         self.new_match()
 
     def new_match(self):
-        print("="*5, "New Match", "="*5)
         players = self.poker.new_match()
 
         # Middle man recive the hand
         if self.bot:
+            print("="*5, "New Match", "="*5)
             self.middleman.get_hand(players[f'{self.middleman.name}'])
+            print(f"Expected outcome {self.poker.exepected_outcome(self.middleman.name)}")
 
         self.playerhandler = PlayerHandler(players, self.cardhandler)
         self.round = iter(self.poker)
-        print(f"Expected outcome {self.poker.exepected_outcome(self.middleman.name)}")
 
     def run(self):
         # Game loop - set self.playing = False enter show_end_screen
@@ -99,18 +99,14 @@ class Game:
                 if self.playerhandler.fold is not None and self.playerhandler.fold.collidepoint(pos):
                     self.playerhandler.next_player("fold")
 
-        if self.bot and self.playerhandler.current_player == self.middleman.name:
-            action = self.middleman.action()
+        if self.bot and not self.menu.open_winner_menu and self.playerhandler.current_player == self.middleman.name:
+            action = self.middleman.action() if len(self.playerhandler.player_round) > 1 else "call"
             self.playerhandler.next_player(action)
-            # Extra: Multiprocessing with Queue or async code
-            # action = awaiting response, async code i.e continue and check if response is reviced
-                # if action reviced -> self.playerhandler.next_player(action)
 
     def update(self):
         if self.playerhandler.next_round and not self.menu.open_winner_menu:
             try:
                 if len(self.playerhandler.folds) > 0:
-                    print(self.playerhandler.folds)
                     self.poker.folds(*self.playerhandler.folds)
                 self.community_cards = next(self.round)
 
