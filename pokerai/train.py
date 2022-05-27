@@ -1,4 +1,4 @@
-import os
+from os import path
 import time
 import torch
 import torch.optim as optim
