@@ -2,18 +2,19 @@ import os
 import time
 import torch
 import torch.optim as optim
+import torch.nn as nn
 import torch.nn.functional as F
-from pokerai.card_compute import card_compute
+from neural_network.card_compute import card_compute
 from poker import Poker
-from pokerai.n_network import NeuralNetwork
+from neural_network.n_network import NeuralNetwork
 
-net = NeuralNetwork(7, 20)
-omptimizer = optim.Adam(net.parameters(), lr=0.001)
+net = NeuralNetwork(7, 64)
+optimizer = optim.Adam(net.parameters(), lr=0.001)
 
 EPOCHS = 100
-winner_list = []
 poker = Poker()
 start = time.time()
+
 def clear_output(output):
     _, index = torch.max(torch.abs(output), dim=0)
     return [1, 0] if index == 0 else [0, 1]
@@ -26,13 +27,12 @@ for epoch in range(EPOCHS):
     print(f'Human: {players["human"]}', f'Bot: {players["bot"]}')
     outcome_all = []
     # preflop round
-    X = torch.tensor([card_compute(players['bot'][0]),
-                      card_compute(players['bot'][1]),
+    X = torch.tensor([card_compute(players['bot'][0]), card_compute(players['bot'][1]),
                       0, 0, 0, 0, 0], dtype=torch.float)
 
     expt_outcome = poker.exepected_outcome('bot')
     y = torch.tensor(expt_outcome, dtype=torch.float)
-    y = y.type(torch.LongTensor)
+    #y = y.type(torch.LongTensor)
     print(f'Expected outcome: {expt_outcome}')
     outcome = net(X)
     outcome_all.append(outcome)
@@ -46,8 +46,7 @@ for epoch in range(EPOCHS):
                           card_compute(players['bot'][1]),
                           card_compute(community_cards[0]),
                           card_compute(community_cards[1]),
-                          card_compute(community_cards[2]),
-                          0, 0], dtype=torch.float)
+                          card_compute(community_cards[2]), 0, 0], dtype=torch.float)
 
         elif len(community_cards) == 4:
             X = torch.tensor([card_compute(players['bot'][0]),
@@ -55,8 +54,7 @@ for epoch in range(EPOCHS):
                           card_compute(community_cards[0]),
                           card_compute(community_cards[1]),
                           card_compute(community_cards[2]),
-                          card_compute(community_cards[3]),
-                          0], dtype=torch.float)
+                          card_compute(community_cards[3]), 0], dtype=torch.float)
 
         else:
             X = torch.tensor([card_compute(players['bot'][0]),
@@ -65,8 +63,7 @@ for epoch in range(EPOCHS):
                           card_compute(community_cards[1]),
                           card_compute(community_cards[2]),
                           card_compute(community_cards[3]),
-                          card_compute(community_cards[4]),
-                          ], dtype=torch.float)
+                          card_compute(community_cards[4])], dtype=torch.float)
 
         print(f'Community cards: {community_cards}')
         outcome = net(X)
@@ -74,26 +71,22 @@ for epoch in range(EPOCHS):
         if clear_output(outcome)[1] == 1:
             poker.folds("bot")
             break
-    print("Outcome all:",outcome_all)
-    print("y_value", y)
+
     if len(outcome_all) != 4:
         print(f'Folded round: {len(outcome_all)}')
     else:
         print(f'Winner: {poker.winner()["winner"][0]}')
-    if len(community_cards) == 5:
-        winner_list.append(poker.winner()["winner"][0])
+
     for i in range(len(outcome_all)):
-        loss = F.nll_loss(outcome_all[i], y[i])
+        if clear_output(outcome_all[i]) != clear_output(y[i]):
+            loss = F.nll_loss(outcome_all[i], y[i])
+            print(f'Loss: {loss}')
+            loss.backward()
+    optimizer.step()
 
-        print(f'Loss: {loss}')
-        loss.backward()
-    omptimizer.step()
-
-path = 'C:\\Code\\ChessAI\\neural_network\\training\\dummy.ph'
-#path = "/home/hyde/Documents/PokerAI/neural_network/training/dummy.ph"
-# torch.save(net.state_dict(), path)
+#path = 'C:\\Code\\ChessAI\\neural_network\\training\\dummy.ph'
+path = "/home/hyde/Documents/PokerAI/neural_network/data/dummy.ph"
+torch.save(net.state_dict(), path)
 end = time.time()
-print('bot wins:', winner_list.count('bot'))
-print('human wins:', winner_list.count('human'))
 
 print("--- %s seconds ---" % (end - start))

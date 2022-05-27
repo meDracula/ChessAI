@@ -1,10 +1,10 @@
 from os import path
-from pokerai.card_compute import card_compute
-from pokerai.n_network import NeuralNetwork
+from neural_network.card_compute import card_compute
+from neural_network.n_network import NeuralNetwork
 import torch
 
 class PokerAI:
-    dir_path = "\\training\\"
+    dir_path = "/data/"
 
     def __init__(self, model):
         self.model = model
@@ -13,7 +13,7 @@ class PokerAI:
     def load_model(cls, filename="dummy.ph"):
         full_path = path.abspath(__file__)
         file_path = path.dirname(full_path) + cls.dir_path + filename
-        model = NeuralNetwork(7, 20)
+        model = NeuralNetwork(7, 64)
         model.load_state_dict(torch.load(file_path))
         model.eval()
         return PokerAI(model)
@@ -23,7 +23,7 @@ class PokerAI:
         # Preflop
         self.computed_hand = [card_compute(hand[0]), card_compute(hand[1])]
         self.X = torch.tensor([self.computed_hand[0], self.computed_hand[1],
-                          0, 0, 0, 0, 0], dtype=torch.float)
+                                0, 0, 0, 0, 0], dtype=torch.float)
 
     def observation(self, community_cards, players_fold):
         community_cards = community_cards['community cards']
@@ -40,8 +40,7 @@ class PokerAI:
                                   card_compute(community_cards[0]),
                                   card_compute(community_cards[1]),
                                   card_compute(community_cards[2]),
-                                  card_compute(community_cards[3]),
-                                  0], dtype=torch.float)
+                                  card_compute(community_cards[3]), 0], dtype=torch.float)
         # River
         else:
             self.X = torch.tensor([self.computed_hand[0], self.computed_hand[1],
@@ -49,8 +48,7 @@ class PokerAI:
                                   card_compute(community_cards[1]),
                                   card_compute(community_cards[2]),
                                   card_compute(community_cards[3]),
-                                  card_compute(community_cards[4]),
-                                  ], dtype=torch.float)
+                                  card_compute(community_cards[4])], dtype=torch.float)
 
     def clear_outcome_action(self, output):
         print(output, end=" ")
@@ -63,5 +61,6 @@ class PokerAI:
         return action
 
     def clear(self):
+        print("="*5, "New Match", "="*5)
         self.X = None
         self.computed_hand = None
