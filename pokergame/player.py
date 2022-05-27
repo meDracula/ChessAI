@@ -75,17 +75,23 @@ class PlayerHandler:
 
         if not all(act != "wait" for act in self.player_round.values()):
             self.current_player = next(self.player_next)
+            if all(self.player_round[player] == "fold" for player in filter(lambda player: player != self.current_player, self.players.keys())):
+                self.player_round[self.current_player] = "call"
+                self.reset_round()
         else:
-            # Next round / Reset Cycle
-            for player in list(self.player_round.keys()):
-                if self.player_round[player] == "fold":
-                    self.player_round.pop(player)
-                    self.folds.append(player)
-                else:
-                    self.player_round[player] = "wait"
+            self.reset_round()
 
-            self.preflop = False
-            self.player_next = iter(self.player_round)
-            self.current_player = next(self.player_next)
-            self.next_round = True
+    # Next round / Reset Cycle
+    def reset_round(self):
+        for player in list(self.player_round.keys()):
+            if self.player_round[player] == "fold":
+                self.player_round.pop(player)
+                self.folds.append(player)
+            else:
+                self.player_round[player] = "wait"
+
+        self.preflop = False
+        self.player_next = iter(self.player_round)
+        self.current_player = next(self.player_next)
+        self.next_round = True
 

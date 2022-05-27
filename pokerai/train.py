@@ -4,9 +4,9 @@ import torch
 import torch.optim as optim
 import torch.nn as nn
 import torch.nn.functional as F
-from neural_network.card_compute import card_compute
+from pokerai.card_compute import card_compute
 from poker import Poker
-from neural_network.n_network import NeuralNetwork
+from pokerai.n_network import NeuralNetwork
 
 net = NeuralNetwork(7, 64)
 optimizer = optim.Adam(net.parameters(), lr=0.001)
