@@ -18,4 +18,3 @@ class MiddleMan:
     def action(self):
         # Acceptable actions 'call' or 'fold'
         return self.bot.action()
-

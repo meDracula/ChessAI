@@ -14,7 +14,7 @@ class Poker:
             :type names: *args
             :type name: str
         """
-        self.table = Table({name:Player(name) for name in names})
+        self.table = Table({name: Player(name) for name in names})
 
     def new_match(self, player_leave=[], player_add=[]):
         """Start a new poker match, and returns a dictonary of all players cards.
@@ -107,10 +107,10 @@ class Poker:
         """
         # Bad hand combinations
         player_obj = self.table.player_table[player]
-        bad_hand_combo = ["2", "7"], ["2", "8"], ["3", "8"], ["2", "9"], ["2", "6"] # All offsuit
+        bad_hand_combo = ["2", "7"], ["2", "8"], ["3", "8"], ["2", "9"], ["2", "6"]  # All offsuit
         hand_rank = {player_obj.hand[0][0], player_obj.hand[1][0]}
         if player_obj.hand[0][1] != player_obj.hand[1][1] and any(hand_rank == set(combo) for combo in bad_hand_combo):
-            return [0, 1], [0, 1], [0, 1], [0, 1] # Fold on pre flop
+            return [0, 1], [0, 1], [0, 1], [0, 1]  # Fold on pre flop
 
         # All players call outcome
         community_cards = self.table.dealer.deck[:5]
@@ -121,8 +121,8 @@ class Poker:
         deviation_fold = 0.2
         percentage_dist = hand_summary(player_obj, community_cards)
         if percentage_dist[1] < 0.1 and percentage_dist[0] + deviation_fold > percentage_dist[1]:
-            return [1, 0], [0, 1], [0, 1], [0, 1] # Fold on flop
+            return [1, 0], [0, 1], [0, 1], [0, 1]  # Fold on flop
         elif percentage_dist[2] < 0.70:
-            return  [1, 0], [1, 0], [0, 1], [0, 1] # Fold on river
+            return [1, 0], [1, 0], [0, 1], [0, 1]  # Fold on river
         else:
-            return [1, 0], [1, 0], [1, 0], [1, 0] # Don't fold to good of a hand
+            return [1, 0], [1, 0], [1, 0], [1, 0]  # Don't fold to good of a hand

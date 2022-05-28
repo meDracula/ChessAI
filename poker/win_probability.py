@@ -1,6 +1,6 @@
 
 
-class WinProbability():
+class WinProbability:
     def __init(self, dealer, *players, scorer, table):
         self.dealer = dealer
         self.players = players
@@ -12,11 +12,11 @@ class WinProbability():
         new_score = 0
         for card in self.dealer.deck:
             self.scorer.convert_cards(card)
-            new_score = self.scorer.evaluator.evaluate(self.scorer.convert_cards(card), self.scorer.convert_cards(player.cards))
+            new_score = self.scorer.evaluator.evaluate(self.scorer.convert_cards(card),
+                                                       self.scorer.convert_cards(player.cards))
             for player in self.players:
                 if new_score > self.player_scores:
                     return 1
-
 
     def odds_per_card(self):
         cards_in_deck = self.dealer.cards_left
@@ -32,9 +32,6 @@ class WinProbability():
                                                           self.scorer.convert_cards(player.cards))
             self.player_scores[player] = self.player_score
 
+
 w = WinProbability()
 print(w.odds_per_card())
-
-
-
-

@@ -75,7 +75,8 @@ class PlayerHandler:
 
         if not all(act != "wait" for act in self.player_round.values()):
             self.current_player = next(self.player_next)
-            if all(self.player_round[player] == "fold" for player in filter(lambda player: player != self.current_player, self.players.keys())):
+            if all(self.player_round[player] == "fold" for player in filter
+                    (lambda player: player != self.current_player, self.players.keys())):
                 self.player_round[self.current_player] = "call"
                 self.reset_round()
         else:

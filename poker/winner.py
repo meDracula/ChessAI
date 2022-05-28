@@ -17,6 +17,7 @@ def winner_is(players: list, community_cards: list):
 
     return min(player_scores, key=player_scores.get)  # return player with best score (lower scores are better)
 
+
 def hand_summary(player, community_cards: list):
     evaluator = Evaluator()
     community_treys = convert_cards(community_cards)
@@ -28,4 +29,3 @@ def hand_summary(player, community_cards: list):
         percentage = 1 - evaluator.get_five_card_rank_percentage(rank)
         player_map_prob.append(percentage)
     return player_map_prob
-

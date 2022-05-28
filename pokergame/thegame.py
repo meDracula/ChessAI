@@ -167,6 +167,7 @@ class Game:
     def show_end_screen(self):
         pass
 
+
 def prompt_bot():
     ans = ""
     while True:

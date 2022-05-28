@@ -1,35 +1,34 @@
-from os import path
 import time
 import torch
 import torch.optim as optim
-import torch.nn as nn
 import torch.nn.functional as F
 from pokerai.card_compute import card_compute
 from poker import Poker
 from pokerai.n_network import NeuralNetwork
 
-net = NeuralNetwork(7, 64)
+EPOCHS = int(input('How many epochs would you want to run the program?'))
+NEURONS = int(input('How many neurons would you like to use?'))
+net = NeuralNetwork(7, NEURONS)
 optimizer = optim.Adam(net.parameters(), lr=0.001)
-
-EPOCHS = 150
 poker = Poker()
 start = time.time()
+poker.new_game('human', 'bot')
+
 
 def clear_output(output):
     _, index = torch.max(torch.abs(output), dim=0)
     return [1, 0] if index == 0 else [0, 1]
 
-poker.new_game('human', 'bot')
+
 for epoch in range(EPOCHS):
     print('=' * 5, f'Epoch {epoch + 1}', '=' * 5)
     net.zero_grad()
     players = poker.new_match()
     print(f'Human: {players["human"]}', f'Bot: {players["bot"]}')
     outcome_all = []
-    # preflop round
+
     X = torch.tensor([card_compute(players['bot'][0]), card_compute(players['bot'][1]),
                       0, 0, 0, 0, 0], dtype=torch.float)
-
     expt_outcome = poker.exepected_outcome('bot')
     y = torch.tensor(expt_outcome, dtype=torch.float)
     y = y.type(torch.LongTensor)
@@ -38,7 +37,6 @@ for epoch in range(EPOCHS):
     outcome_all.append(outcome)
 
     for turn in poker:
-
         community_cards = turn
         community_cards = community_cards['community cards']
         if len(community_cards) == 3:
@@ -84,9 +82,8 @@ for epoch in range(EPOCHS):
             loss.backward()
     optimizer.step()
 
-#path = 'C:\\Code\\ChessAI\\neural_network\\training\\dummy.ph'
-path = "/home/hyde/Documents/PokerAI/pokerai/data/dummy.ph"
-torch.save(net.state_dict(), path)
+# path = 'C:\\Code\\ChessAI\\neural_network\\training\\dummy.ph'
+# path = "/home/hyde/Documents/PokerAI/pokerai/data/dummy.ph"
+# torch.save(net.state_dict(), path)
 end = time.time()
-
 print("--- %s seconds ---" % (end - start))
