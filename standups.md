@@ -350,3 +350,27 @@ Markus och Marco läser på om Feedforward Neural Network och hur man kan göra 
 	- Albin kollar på en video om loss functions
 	- Markus kör reward/penalty/ kollar lite på x värdet och neruons
 
+# Standup 28
+**Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
+**Datum**: 2022-05-30<br>
+
+* Bestämelse:
+	- Kolla med Joakim om Loss function korrect gjort.
+	- Kollan med Joakim reward/penalty
+	- Förberda presentation
+	- Merga pull request #76
+	- Complete issue #- (Query user after training to save model end of train.py)
+
+
+# Standup 29
+**Närvarande**: Albin Thorsson, Markus Antonsen och Marco Vrban<br>
+**Datum**: 2022-05-31<br>
+
+* Bestämelse:
+	- Kolla med Joakim om Loss function korrect gjort.
+	- Kollan med Joakim reward/penalty
+	- Förberda presentation
+	- Merga pull request #76
+	- Complete issue #- (Query user after training to save model end of train.py)
+	- Albin Jupyter Notebook in-depth explanation.
+
