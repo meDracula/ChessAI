@@ -2,8 +2,7 @@ from kuhn.table import Table
 from kuhn.player import Player
 
 class Kuhn:
-    def __init__(self):
-        self.deck_value = {"Q": 1, "K": 2, "A": 3}
+    deck_value = {"J": 1, "Q": 2, "K": 3}
 
     def new_match(self, *names):
         self.table = Table([Player(name) for name in names])

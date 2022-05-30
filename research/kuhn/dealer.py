@@ -9,6 +9,6 @@ class Dealer:
 
     @staticmethod
     def init_deck():
-        deck = ["Q", "K", "A"]
+        deck = ["J", "Q", "K"]
         shuffle(deck)
         return deck

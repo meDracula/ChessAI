@@ -2,22 +2,27 @@ import time
 import torch
 import torch.optim as optim
 import torch.nn.functional as F
+from random import randint
 from pokerai.card_compute import card_compute
 from poker import Poker
 from pokerai.n_network import NeuralNetwork
 
-EPOCHS = int(input('How many epochs would you want to run the program?'))
-NEURONS = int(input('How many neurons would you like to use?'))
-net = NeuralNetwork(7, NEURONS)
+print("="*10, "Training", "="*10)
+#EPOCHS = int(input('How many epochs would you want to run the program: '))
+
+EPOCHS = 10
+
+net = NeuralNetwork()
 optimizer = optim.Adam(net.parameters(), lr=0.001)
 poker = Poker()
 start = time.time()
 poker.new_game('human', 'bot')
 
+EPSILON_CONSTANT = 80  # Used to control randomness
+epsilon = 0    # Control the randomness
 
 def clear_output(output):
-    _, index = torch.max(torch.abs(output), dim=0)
-    return [1, 0] if index == 0 else [0, 1]
+    return 1 if torch.argmin(output) == 0 else 0
 
 
 for epoch in range(EPOCHS):
@@ -32,9 +37,14 @@ for epoch in range(EPOCHS):
     expt_outcome = poker.exepected_outcome('bot')
     y = torch.tensor(expt_outcome, dtype=torch.float)
     y = y.type(torch.LongTensor)
+
     print(f'Expected outcome: {expt_outcome}')
     outcome = net(X)
+    action = clear_output(outcome)
+    outcome = torch.tensor([outcome[action].item()], dtype=torch.float, requires_grad=True)
     outcome_all.append(outcome)
+
+    fold_round = 4
 
     for turn in poker:
         community_cards = turn
@@ -65,25 +75,42 @@ for epoch in range(EPOCHS):
 
         print(f'Community cards: {community_cards}')
         outcome = net(X)
+
+        epsilon = EPSILON_CONSTANT - epoch
+        if randint(0, 100) < epsilon:
+            print("RANDOM")
+            action = 0 if randint(0,1) == 0 else 1
+            outcome = torch.tensor([-action], dtype=torch.float, requires_grad=True)
+        else:
+            action = clear_output(outcome)
+            outcome = torch.tensor([outcome[action].item()], dtype=torch.float, requires_grad=True)
         outcome_all.append(outcome)
-        if clear_output(outcome)[1] == 1:
+
+        if action == 0:
             poker.folds("bot")
+            fold_round = 4-len(outcome_all)
+            for _ in range(fold_round):
+                outcome_all.append(torch.tensor([0.], dtype=torch.float, requires_grad=True))
             break
 
-    if len(outcome_all) != 4:
-        print(f'Folded round: {len(outcome_all)}')
+    if fold_round != 4:
+        print(f'Folded round: {fold_round}')
     else:
         print(f'Winner: {poker.winner()["winner"][0]}')
 
-    for i in range(len(outcome_all)):
-        if clear_output(outcome_all[i]) != clear_output(y[i]):
-            loss = F.nll_loss(outcome_all[i], y[i])
-            print(f'Loss: {loss}')
-            loss.backward()
+    # Convert outcome_all to tensor
+    outcome_all = torch.cat(outcome_all)
+    print("OUTCOME ALL:", outcome_all)
+
+    loss = F.nll_loss(outcome_all, y)
+    print(f'Loss: {loss}')
+    loss.backward()
     optimizer.step()
 
+
 # path = 'C:\\Code\\ChessAI\\neural_network\\training\\dummy.ph'
-# path = "/home/hyde/Documents/PokerAI/pokerai/data/dummy.ph"
-# torch.save(net.state_dict(), path)
+#path = "/home/hyde/Documents/PokerAI/pokerai/data/dummy2.ph"
+#torch.save(net.state_dict(), path)
+
 end = time.time()
 print("--- %s seconds ---" % (end - start))

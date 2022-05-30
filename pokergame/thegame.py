@@ -102,6 +102,7 @@ class Game:
 
         if self.bot and not self.menu.open_winner_menu and self.playerhandler.current_player == self.middleman.name:
             action = self.middleman.action() if len(self.playerhandler.player_round) > 1 else "call"
+            print(action)
             self.playerhandler.next_player(action)
 
     def update(self):
