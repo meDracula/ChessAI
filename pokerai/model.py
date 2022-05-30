@@ -52,7 +52,7 @@ class PokerAI:
 
     def clear_outcome_action(self, output):
         print(output, end=" ")
-        return "call" if torch.argmin(output) == 0 else "fold"
+        return "call" if torch.argmax(output) == 0 else "fold"
 
     def action(self):
         action = self.clear_outcome_action(self.model(self.X))
