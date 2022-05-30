@@ -81,3 +81,11 @@ Vi tyckte att vi lyckades väldigt bra med förra sprinten, men kan bli lite bä
 Vi kan bli bättre på att tidsbedömma för våra issues.
 
 Sprint 6 kommer pågå fram till 2022-05-30.
+
+# Sprint Review 6
+**Närvarande**: Albin Thorsson, Markus Antonsen, Marco Vrban<br>
+**Datum**: 2022-05-16 2022-05-23<br>
+
+Sista sprint. Målet med en färdig feedforward neural network har uppnåts.
+Det nurvaranda att lägga till backlogen är att få loss function att fungera väl.
+Det som kommer jobbas framåt kommer gå utanför en sprint utan vara med allmänt att pimpa till projketet.
