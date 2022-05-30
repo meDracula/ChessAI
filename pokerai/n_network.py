@@ -15,7 +15,7 @@ class NeuralNetwork(nn.Module):
         self.hidden_layer = [nn.Linear(n_neurons, n_neurons) for _ in range(h_layers)]
 
         # Output layer
-        self.output = nn.Linear(n_neurons, 2)
+        self.output = nn.Linear(n_neurons, 1)
 
     def forward(self, inputs):
         z = F.relu(self.input(inputs))
