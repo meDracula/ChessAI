@@ -13,7 +13,7 @@ class PokerAI:
     def load_model(cls, filename="dummy2.ph"):
         full_path = path.abspath(__file__)
         file_path = path.dirname(full_path) + cls.dir_path + filename
-        model = NeuralNetwork()
+        model = NeuralNetwork(n_neurons=20)
         model.load_state_dict(torch.load(file_path))
         model.eval()
         return PokerAI(model)
@@ -52,7 +52,8 @@ class PokerAI:
 
     def clear_outcome_action(self, output):
         print(output, end=" ")
-        return "call" if torch.argmax(output) == 0 else "fold"
+        return "call" if output > 0.5 else "fold"
+
 
     def action(self):
         action = self.clear_outcome_action(self.model(self.X))

@@ -1,118 +1,130 @@
-import time
 import torch
 import torch.optim as optim
 import torch.nn.functional as F
 import torch.nn as nn
+import time
 from random import randint
+from os import path
 from pokerai.card_compute import card_compute
 from poker import Poker
 from pokerai.n_network import NeuralNetwork
 
-print("="*10, "Training", "="*10)
-
-filename = "dummy2.ph"
-PATH = "/home/hyde/Documents/PokerAI/pokerai/data/" + filename
-
-EPOCHS = 40
-
-net = NeuralNetwork()
-optimizer = optim.Adam(net.parameters(), lr=0.001)
-poker = Poker()
-start = time.time()
-poker.new_game('human', 'bot')
-
-loss = nn.BCELoss()
-
-EPSILON_CONSTANT = 80  # Used to control randomness
-epsilon = 0    # Control the randomness
+EPSILON_CONSTANT = 40  # Used to control randomness
 
 def clear_output(output):
     return 1 if output > 0.5 else 0
-    #return 1 if torch.argmax(output) == 0 else 0
+
+def penalty(expected_outcome, outcome_all):
+    print(expected_outcome, outcome_all)
 
 
-for epoch in range(EPOCHS):
-    print('=' * 5, f'Epoch {epoch + 1}', '=' * 5)
-    net.zero_grad()
-    players = poker.new_match()
-    print(f'Human: {players["human"]}', f'Bot: {players["bot"]}')
-    outcome_all = []
+def train(epochs):
+    poker = Poker()
+    poker.new_game('human', 'bot')
 
-    X = torch.tensor([card_compute(players['bot'][0]), card_compute(players['bot'][1]),
-                      0, 0, 0, 0, 0], dtype=torch.float)
-    expt_outcome = poker.exepected_outcome('bot')
-    y = torch.tensor(expt_outcome, dtype=torch.float)
-    #y = y.type(torch.LongTensor)
+    net = NeuralNetwork()
+    optimizer = optim.Adam(net.parameters(), lr=0.001)
 
-    print(f'Expected outcome: {expt_outcome}')
-    outcome = net(X)
-    print(outcome)
+    epsilon = 0    # Control the randomness
+    loss = nn.BCELoss()
 
-    action = clear_output(outcome)
-    outcome_all.append(outcome)
+    for epoch in range(epochs):
+        print('=' * 5, f'Epoch {epoch + 1}', '=' * 5)
+        net.zero_grad()
+        players = poker.new_match()
+        print(f'Human: {players["human"]}', f'Bot: {players["bot"]}')
+        outcome_all = []
 
-    if action == 1:
-        for turn in poker:
-            community_cards = turn
-            community_cards = community_cards['community cards']
-            if len(community_cards) == 3:
-                X = torch.tensor([card_compute(players['bot'][0]),
-                              card_compute(players['bot'][1]),
-                              card_compute(community_cards[0]),
-                              card_compute(community_cards[1]),
-                              card_compute(community_cards[2]), 0, 0], dtype=torch.float)
+        X = torch.tensor([card_compute(players['bot'][0]), card_compute(players['bot'][1]),
+                          0, 0, 0, 0, 0], dtype=torch.float)
+        expt_outcome = poker.exepected_outcome('bot')
+        y = torch.tensor(expt_outcome, dtype=torch.float)
 
-            elif len(community_cards) == 4:
-                X = torch.tensor([card_compute(players['bot'][0]),
-                              card_compute(players['bot'][1]),
-                              card_compute(community_cards[0]),
-                              card_compute(community_cards[1]),
-                              card_compute(community_cards[2]),
-                              card_compute(community_cards[3]), 0], dtype=torch.float)
+        print(f'Expected outcome: {expt_outcome}')
+        outcome = net(X)
 
-            else:
-                X = torch.tensor([card_compute(players['bot'][0]),
-                              card_compute(players['bot'][1]),
-                              card_compute(community_cards[0]),
-                              card_compute(community_cards[1]),
-                              card_compute(community_cards[2]),
-                              card_compute(community_cards[3]),
-                              card_compute(community_cards[4])], dtype=torch.float)
+        action = clear_output(outcome)
+        outcome_all.append(outcome)
 
-            print(f'Community cards: {community_cards}')
-            outcome = net(X)
+        if action == 1:
+            for turn in poker:
+                community_cards = turn
+                community_cards = community_cards['community cards']
+                if len(community_cards) == 3:
+                    X = torch.tensor([card_compute(players['bot'][0]),
+                                  card_compute(players['bot'][1]),
+                                  card_compute(community_cards[0]),
+                                  card_compute(community_cards[1]),
+                                  card_compute(community_cards[2]), 0, 0], dtype=torch.float)
 
-            epsilon = EPSILON_CONSTANT - epoch
-            if randint(0, 100) < epsilon:
-                print("RANDOM")
-                action = 0 if randint(0,1) == 0 else 1
-            else:
-                action = clear_output(outcome)
-            outcome_all.append(outcome)
+                elif len(community_cards) == 4:
+                    X = torch.tensor([card_compute(players['bot'][0]),
+                                  card_compute(players['bot'][1]),
+                                  card_compute(community_cards[0]),
+                                  card_compute(community_cards[1]),
+                                  card_compute(community_cards[2]),
+                                  card_compute(community_cards[3]), 0], dtype=torch.float)
 
-            if action == 0:
-                poker.folds("bot")
-                break
+                else:
+                    X = torch.tensor([card_compute(players['bot'][0]),
+                                  card_compute(players['bot'][1]),
+                                  card_compute(community_cards[0]),
+                                  card_compute(community_cards[1]),
+                                  card_compute(community_cards[2]),
+                                  card_compute(community_cards[3]),
+                                  card_compute(community_cards[4])], dtype=torch.float)
 
-    if action == 0:
-        print(f'Folded round: {len(outcome_all)}')
-        for _ in range(4-len(outcome_all)):
-            outcome_all.append(torch.tensor([0.], dtype=torch.float, requires_grad=True))
-    else:
-        print(f'Winner: {poker.winner()["winner"][0]}')
+                print(f'Community cards: {community_cards}')
+                outcome = net(X)
 
-    # Convert outcome_all to tensor
-    outcome_all = torch.cat(outcome_all)
-    print("OUTCOME ALL:", outcome_all)
+                epsilon = EPSILON_CONSTANT - epoch
+                if randint(0, 100) < epsilon:
+                    print(f"RANDOM ROUND: {len(community_cards) - 1}")
+                    action = 0 if randint(0,1) == 0 else 1
+                else:
+                    action = clear_output(outcome)
+                outcome_all.append(outcome)
 
-    output = loss(outcome_all, y)
-    print(f'Loss: {output}')
-    output.backward()
-    optimizer.step()
+                if action == 0:
+                    poker.folds("bot")
+                    break
 
-end = time.time()
-print("--- %s seconds ---" % (end - start))
+        if action == 0:
+            print(f'Folded round: {len(outcome_all)}')
+            for _ in range(4-len(outcome_all)):
+                outcome_all.append(torch.tensor([0.], dtype=torch.float, requires_grad=True))
+        else:
+            print(f'Winner: {poker.winner()["winner"][0]}')
 
-save = input("Save model[y/n]: ")
-if save.lower() == "y":
-    torch.save(net.state_dict(), PATH)
+        # Convert outcome_all to tensor
+        outcome_all = torch.cat(outcome_all)
+        print("OUTCOME ALL:", outcome_all)
+
+        output = loss(outcome_all, y)
+
+        # Introduce penalty and reward
+        #print(f'Loss: {output}')
+        #output += penalty(y, outcome_all)
+
+        print(f'Loss: {output}')
+        output.backward()
+        optimizer.step()
+
+def main():
+    filename = "dummy2.ph"
+    PATH = "/home/hyde/Documents/PokerAI/pokerai/data/" + filename
+    print("="*10, "Training", "="*10)
+
+    start = time.time()
+    train(50)
+    end = time.time()
+    print("--- %s seconds ---" % (end - start))
+
+    save = input("Save model[y/n]: ")
+    if save.lower() == "y":
+        filename = input("File name: ") + ".ph"
+        current_dir = path.join(path.dirname(path.realpath(__file__)), "data")
+        torch.save(net.state_dict(), path.join(current_dir, filename))
+
+if __name__ == '__main__':
+    main()

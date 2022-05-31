@@ -3,7 +3,7 @@ import torch.nn.functional as F
 
 
 class NeuralNetwork(nn.Module):
-    def __init__(self, n_inputs=7, n_neurons=20, h_layers=5):
+    def __init__(self, n_inputs=7, n_neurons=64, h_layers=5):
         super().__init__()
 
         self.activation = nn.Sigmoid()
