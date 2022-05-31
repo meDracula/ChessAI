@@ -16,13 +16,15 @@ def clear_output(output):
 
 def penalty(expected_outcome, outcome_all):
     print(expected_outcome, outcome_all)
+    clear_outcome_all = [clear_output(outcome) for outcome in outcome_all]
+    idx = next((i for i in range(4) if clear_outcome_all[i] != expected_outcome[i]), 4)
+    return 0.1*(4 - idx)
 
 
-def train(epochs):
+def train(net, epochs):
     poker = Poker()
     poker.new_game('human', 'bot')
 
-    net = NeuralNetwork()
     optimizer = optim.Adam(net.parameters(), lr=0.001)
 
     epsilon = 0    # Control the randomness
@@ -103,8 +105,8 @@ def train(epochs):
         output = loss(outcome_all, y)
 
         # Introduce penalty and reward
-        #print(f'Loss: {output}')
-        #output += penalty(y, outcome_all)
+        print(f'Loss: {output}')
+        output += penalty(y, outcome_all)
 
         print(f'Loss: {output}')
         output.backward()
@@ -113,10 +115,13 @@ def train(epochs):
 def main():
     filename = "dummy2.ph"
     PATH = "/home/hyde/Documents/PokerAI/pokerai/data/" + filename
+
+    net = NeuralNetwork()
+
     print("="*10, "Training", "="*10)
 
     start = time.time()
-    train(50)
+    train(net, 200)
     end = time.time()
     print("--- %s seconds ---" % (end - start))
 
