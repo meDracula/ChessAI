@@ -1,12 +1,12 @@
 import sys
 import pygame
-import settings
-from menu import Menu
+from pokergame import settings
+from pokergame.menu import Menu
 from poker import Poker
-from player import PlayerHandler
-from cardhandler import CardHandler
-from leaderboard import show_leaderboard, save_winner
-from middleman import MiddleMan
+from pokergame.player import PlayerHandler
+from pokergame.cardhandler import CardHandler
+from pokergame.leaderboard import show_leaderboard, save_winner
+from pokergame.middleman import MiddleMan
 
 
 class Game:
@@ -47,10 +47,13 @@ class Game:
 
         # Middle man recive the hand
         if self.bot:
+            print("="*5, "New Match", "="*5)
             self.middleman.get_hand(players[f'{self.middleman.name}'])
+            print(f"Expected outcome {self.poker.exepected_outcome(self.middleman.name)}")
 
         self.playerhandler = PlayerHandler(players, self.cardhandler)
         self.round = iter(self.poker)
+        self.community_cards = []
 
     def run(self):
         # Game loop - set self.playing = False enter show_end_screen
@@ -97,12 +100,9 @@ class Game:
                 if self.playerhandler.fold is not None and self.playerhandler.fold.collidepoint(pos):
                     self.playerhandler.next_player("fold")
 
-        if self.bot and self.playerhandler.current_player == self.middleman.name:
-            action = self.middleman.action()
+        if self.bot and not self.menu.open_winner_menu and self.playerhandler.current_player == self.middleman.name:
+            action = self.middleman.action() if len(self.playerhandler.player_round) > 1 else "call"
             self.playerhandler.next_player(action)
-            # Extra: Multiprocessing with Queue or async code
-            # action = awaiting response, async code i.e continue and check if response is reviced
-                # if action reviced -> self.playerhandler.next_player(action)
 
     def update(self):
         if self.playerhandler.next_round and not self.menu.open_winner_menu:
@@ -130,8 +130,15 @@ class Game:
         self.playerhandler.draw_players(self)
 
         # Community cards
-        if not self.playerhandler.preflop:
+        if not self.playerhandler.preflop and len(self.community_cards) > 0:
             self.cardhandler.draw_community_cards(self, self.community_cards)
+
+        # Draw action
+        if self.playerhandler.previous_act is not None and not self.menu.open_winner_menu:
+            line = f"{self.playerhandler.previous_act[0]}   {self.playerhandler.previous_act[1]}"
+            action_place_text = self.font.render(line, True, (0, 0, 0))
+            self.screen.blit(action_place_text, (350, 10))
+
 
         # Show Menu
         if self.menu.open_game_menu:
@@ -159,6 +166,7 @@ class Game:
 
     def show_end_screen(self):
         pass
+
 
 def prompt_bot():
     ans = ""

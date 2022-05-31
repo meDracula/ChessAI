@@ -1,9 +1,10 @@
-from callie import Callie
+from pokergame.callie import Callie
+from pokerai.model import PokerAI
 
 class MiddleMan:
     def __init__(self, name):
         self.name = name
-        self.bot = Callie()
+        self.bot = PokerAI.load_model()
 
     def new_match(self):
         self.bot.clear()
@@ -12,9 +13,8 @@ class MiddleMan:
         self.bot.get_hand(hand)
 
     def update_enviroment(self, community_cards, players_fold):
-        self.bot.obeservation(community_cards, players_fold)
+        self.bot.observation(community_cards, players_fold)
 
     def action(self):
         # Acceptable actions 'call' or 'fold'
         return self.bot.action()
-

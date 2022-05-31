@@ -1,4 +1,4 @@
-import settings
+from pokergame import settings
 import pygame
 
 
@@ -70,7 +70,8 @@ class CardHandler:
         community_card_pos_y = 330
         for card in community_cards['community cards']:
             community_card_pos_x += offset_x
-            game.screen.blit(self.loaded_cards.get(card, self.card_load(card)), (community_card_pos_x, community_card_pos_y))
+            game.screen.blit(self.loaded_cards.get(card, self.card_load(card)), (community_card_pos_x,
+                                                                                 community_card_pos_y))
 
     def draw_player_cards(self, game, card, pos):
         game.screen.blit(self.loaded_cards.get(card, self.card_load(card)), pos)
