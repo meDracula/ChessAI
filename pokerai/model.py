@@ -10,10 +10,10 @@ class PokerAI:
         self.model = model
 
     @classmethod
-    def load_model(cls, filename="dummy2.ph"):
+    def load_model(cls, filename="dummy.ph"):
         full_path = path.abspath(__file__)
         file_path = path.dirname(full_path) + cls.dir_path + filename
-        model = NeuralNetwork(n_neurons=20)
+        model = NeuralNetwork()
         model.load_state_dict(torch.load(file_path))
         model.eval()
         return PokerAI(model)

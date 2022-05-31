@@ -10,6 +10,7 @@ from poker import Poker
 from pokerai.n_network import NeuralNetwork
 
 EPSILON_CONSTANT = 40  # Used to control randomness
+REWARD_CONSTANT = 0.1 # Used to control reward
 
 def clear_output(output):
     return 1 if output > 0.5 else 0
@@ -18,16 +19,16 @@ def penalty(expected_outcome, outcome_all):
     print(expected_outcome, outcome_all)
     clear_outcome_all = [clear_output(outcome) for outcome in outcome_all]
     idx = next((i for i in range(4) if clear_outcome_all[i] != expected_outcome[i]), 4)
-    return 0.1*(4 - idx)
+    return REWARD_CONSTANT*(4 - idx)
 
 
 def train(net, epochs):
     poker = Poker()
     poker.new_game('human', 'bot')
+    winners = []
 
     optimizer = optim.Adam(net.parameters(), lr=0.001)
 
-    epsilon = 0    # Control the randomness
     loss = nn.BCELoss()
 
     for epoch in range(epochs):
@@ -79,7 +80,7 @@ def train(net, epochs):
                 print(f'Community cards: {community_cards}')
                 outcome = net(X)
 
-                epsilon = EPSILON_CONSTANT - epoch
+                epsilon = EPSILON_CONSTANT - epoch # Control the randomness
                 if randint(0, 100) < epsilon:
                     print(f"RANDOM ROUND: {len(community_cards) - 1}")
                     action = 0 if randint(0,1) == 0 else 1
@@ -91,12 +92,16 @@ def train(net, epochs):
                     poker.folds("bot")
                     break
 
+
+
         if action == 0:
             print(f'Folded round: {len(outcome_all)}')
             for _ in range(4-len(outcome_all)):
                 outcome_all.append(torch.tensor([0.], dtype=torch.float, requires_grad=True))
         else:
-            print(f'Winner: {poker.winner()["winner"][0]}')
+            winner = poker.winner()["winner"]
+            print(f'Winner: {winner[0]}')
+            winners.append(winner[0])
 
         # Convert outcome_all to tensor
         outcome_all = torch.cat(outcome_all)
@@ -112,16 +117,18 @@ def train(net, epochs):
         output.backward()
         optimizer.step()
 
+    print(f"bot wins:{winners.count('bot')}")
+    print(f"human wins:{winners.count('human')}")
+
+
 def main():
-    filename = "dummy2.ph"
-    PATH = "/home/hyde/Documents/PokerAI/pokerai/data/" + filename
 
     net = NeuralNetwork()
 
     print("="*10, "Training", "="*10)
 
     start = time.time()
-    train(net, 200)
+    train(net, 5000)
     end = time.time()
     print("--- %s seconds ---" % (end - start))
 
