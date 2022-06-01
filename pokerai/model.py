@@ -10,7 +10,7 @@ class PokerAI:
         self.model = model
 
     @classmethod
-    def load_model(cls, filename="dummy.ph"):
+    def load_model(cls, filename="dummy2.ph"):
         full_path = path.abspath(__file__)
         file_path = path.dirname(full_path) + cls.dir_path + filename
         model = NeuralNetwork()
