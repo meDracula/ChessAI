@@ -10,16 +10,15 @@ from poker import Poker
 from pokerai.n_network import NeuralNetwork
 
 EPSILON_CONSTANT = 40  # Used to control randomness
-REWARD_CONSTANT = 0.1 # Used to control reward
+REWARD_CONSTANT = 0.3 # Used to control reward
 
 def clear_output(output):
     return 1 if output > 0.5 else 0
 
-def penalty(expected_outcome, outcome_all):
-    print(expected_outcome, outcome_all)
+def reward(expected_outcome, outcome_all):
     clear_outcome_all = [clear_output(outcome) for outcome in outcome_all]
     idx = next((i for i in range(4) if clear_outcome_all[i] != expected_outcome[i]), 4)
-    return REWARD_CONSTANT*(4 - idx)
+    return  -REWARD_CONSTANT if (4 - idx) == 0 else (4 - idx)*REWARD_CONSTANT # Reward or Penalty
 
 
 def train(net, epochs):
@@ -110,25 +109,27 @@ def train(net, epochs):
         output = loss(outcome_all, y)
 
         # Introduce penalty and reward
-        print(f'Loss: {output}')
-        output += penalty(y, outcome_all)
+        output += reward(y, outcome_all)
+        if output < 0:
+            output *= 0
 
         print(f'Loss: {output}')
         output.backward()
         optimizer.step()
 
-    print(f"bot wins:{winners.count('bot')}")
-    print(f"human wins:{winners.count('human')}")
+    print(f"bot wins: {winners.count('bot')}")
+    print(f"human wins: {winners.count('human')}")
+    print("Total games played: ", epochs)
 
 
 def main():
 
     net = NeuralNetwork()
+    epochs = 10000           # Training Epochs, change number to preferred iterations
 
     print("="*10, "Training", "="*10)
-
     start = time.time()
-    train(net, 5000)
+    train(net, epochs)
     end = time.time()
     print("--- %s seconds ---" % (end - start))
 
