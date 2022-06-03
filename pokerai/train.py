@@ -110,6 +110,8 @@ def train(net, epochs):
 
         # Introduce penalty and reward
         output += reward(y, outcome_all)
+        if output < 0:
+            output *= 0
 
         print(f'Loss: {output}')
         output.backward()
