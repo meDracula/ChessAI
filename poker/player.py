@@ -15,3 +15,5 @@ class Player:
     def hand(self):
         self.cards = []
 
+    def __repr__(self):
+        return f"Hand for {self.name} = {self.cards}"
